@@ -1,0 +1,36 @@
+// Variáveis
+$primary-color: #a621ff;
+$primary-hover: #d414fa;
+$disabled-color: #999;
+$text-color: white;
+$border-radius: 8px;
+
+@mixin transition($props...) {
+  transition: $props;
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  background-color: $primary-color;
+  color: $text-color;
+  border: none;
+  border-radius: $border-radius;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  @include transition(background-color 0.3s ease, transform 0.2s ease);
+
+  &:hover {
+    background-color: $primary-hover;
+    transform: scale(1.03);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    background-color: $disabled-color;
+    cursor: not-allowed;
+  }
+}
