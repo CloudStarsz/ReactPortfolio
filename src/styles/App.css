@@ -6,14 +6,38 @@
   font-family: "Roboto", sans-serif;
 }
 
+html,
 body {
-  max-width: 90vw;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  height: 100%;
+  overflow: hidden;
   background-color: #0b001a;
   color: #e1d8ed;
-  font-size: 16px;
+}
+
+.snap-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+.snap-container::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.area {
+  height: 100vh;
+  width: 100vw;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.area > * {
+  max-width: 90vw;
 }
 
 .logo {
@@ -27,14 +51,15 @@ body {
 header {
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
   padding: 2rem;
-  margin: 0 auto;
   width: 90vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 100;
+  background-color: #0b001a;
 }
 header nav ul {
   display: flex;
@@ -50,26 +75,95 @@ header nav ul li:hover {
   font-size: 18px;
 }
 
-main {
-  padding-top: 25vh;
+.home {
+  width: 100%;
+  text-align: center;
 }
-main .presentation-intro {
+.home .presentation-intro {
   font-size: 96px;
   font-weight: 100;
 }
-main .presentation-name {
+.home .presentation-name {
   font-size: 120px;
   font-weight: 800;
   margin: 0;
   font-style: italic;
 }
-main .presentation-roles {
+.home .presentation-roles {
   justify-content: center;
   display: flex;
   gap: 48px;
   margin: 0;
   color: #b9aecf;
 }
-main #visit_my_work-btn {
+.home #visit_my_work-btn {
   margin: 40px;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #9b7fff !important;
+  transform: scale(1);
+}
+
+.fixed-footer-arrow {
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+  pointer-events: none;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.arrow-icon {
+  pointer-events: auto;
+  cursor: pointer;
+  color: white;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background-color: transparent;
+  animation: bounce 2s infinite;
+}
+.arrow-icon svg {
+  transition: all 0.3s ease;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.is-ended .arrow-icon {
+  animation: none;
+  width: 16px;
+  height: 16px;
+  background-color: white;
+}
+.is-ended .arrow-icon svg {
+  opacity: 0;
+  transform: scale(0);
+  width: 0;
+  height: 0;
+}
+
+.arrow-icon:hover:not(.is-ended .arrow-icon) {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
 }/*# sourceMappingURL=App.css.map */
