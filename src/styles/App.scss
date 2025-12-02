@@ -202,3 +202,10 @@ header {
     transform: translateY(-5px);
   }
 }
+
+.tech-page {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+}

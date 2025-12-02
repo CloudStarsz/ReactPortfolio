@@ -166,4 +166,9 @@ header nav ul li:hover {
   60% {
     transform: translateY(-5px);
   }
+}
+.tech-page {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }/*# sourceMappingURL=App.css.map */

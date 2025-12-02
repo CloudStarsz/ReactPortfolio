@@ -15,7 +15,6 @@ function MyProjects() {
                 slidesPerView={'auto'}
                 centeredSlides={true}
                 loop={true}
-                loopedSlides={3}
                 autoplay={{
                     delay: 3000,
                     disableOnInteraction: false,

@@ -17,4 +17,4 @@ function FirstPage() {
   );
 }
 
-export default FirstPage
+export default FirstPage;
