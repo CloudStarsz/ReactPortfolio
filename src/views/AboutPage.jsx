@@ -1,7 +1,7 @@
 import { Box, Stack, VStack, Image, Text, Heading } from "@chakra-ui/react";
-
+import escritoroniImg from "../img/Escritoroni.jpeg";
 export default function AboutPage() {
-    const photoUrl = "src/img/Escritoroni.jpeg";
+    const photoUrl = escritoroniImg;
 
     return (
         <Box p={{ base: 6, md: 12 }} className="about-page">
