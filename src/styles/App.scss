@@ -88,35 +88,6 @@ header {
   }
 }
 
-.home {
-  width: 100%;
-  text-align: center;
-
-  .presentation-intro {
-    font-size: 96px;
-    font-weight: 100;
-  }
-
-  .presentation-name {
-    font-size: 120px;
-    font-weight: 800;
-    margin: 0;
-    font-style: italic;
-  }
-
-  .presentation-roles {
-    justify-content: center;
-    display: flex;
-    gap: 48px;
-    margin: 0;
-    color: #b9aecf;
-  }
-
-  #visit_my_work-btn {
-    margin: 40px;
-  }
-}
-
 .swiper-button-prev,
 .swiper-button-next {
   color: #9b7fff !important;
@@ -208,4 +179,14 @@ header {
   flex-direction: column;
   gap: 40px;
 
+}
+
+.about-page {
+
+  h1 {
+    font-weight: 100;
+    font-style: italic;
+    font-size: clamp(2.5rem, 8vw, 72px);
+    line-height: 1.1;
+  }
 }

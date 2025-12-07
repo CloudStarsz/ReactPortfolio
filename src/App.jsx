@@ -6,6 +6,7 @@ import MyProjects from './views/MyProjects.jsx'
 import Scroll from './components/Scroll.jsx'
 import TechPage from './views/TechPage.jsx'
 import { Provider } from "./components/ui/provider.jsx";
+import AboutPage from './views/AboutPage'
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
           <TechPage />
         </section>
         <section className="area area-4">
-          <h1>Seção 4</h1>
+          <AboutPage />
         </section>
       </div>
       <Scroll />
