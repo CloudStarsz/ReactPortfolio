@@ -40,8 +40,8 @@ body {
   align-items: center;
   position: relative;
 }
-.area > * {
-  max-width: 90vw;
+.area .area-2 > * {
+  max-width: 100vw;
 }
 
 .logo {
@@ -185,6 +185,11 @@ header .main-nav .nav-menu li {
 .swiper-button-prev {
   left: 10px !important;
 }
+@media (max-width: 768px) {
+  .swiper-button-prev {
+    left: 10% !important;
+  }
+}
 @media (min-width: 769px) {
   .swiper-button-prev {
     left: 20px !important;
@@ -193,6 +198,11 @@ header .main-nav .nav-menu li {
 
 .swiper-button-next {
   right: 10px !important;
+}
+@media (max-width: 768px) {
+  .swiper-button-next {
+    right: 10% !important;
+  }
 }
 @media (min-width: 769px) {
   .swiper-button-next {

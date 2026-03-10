@@ -69,17 +69,22 @@ export default function TechPage() {
     ]
 
     return (
-        <Flex
-            wrap="wrap"
-            justify="center"
-            gap={{ base: "15px", md: "40px" }}
-            maxW={{ base: "95vw", md: "80vw" }}
-            mx="auto"
-            py={10}
-        >
-            {techs.map((tech) => (
-                <TechCard key={tech.name} {...tech} />
-            ))}
-        </Flex>
+        <Box w="100%">
+            <h1 style={{ textAlign: 'center', marginBottom: "30px", fontWeight: '100', fontStyle: 'italic', fontSize: 'clamp(2.5rem, 6vw, 72px)' }}>
+                Minha Stack
+            </h1>
+            <Flex
+                wrap="wrap"
+                justify="center"
+                gap={{ base: "15px", md: "40px" }}
+                maxW={{ base: "95vw", md: "80vw" }}
+                mx="auto"
+                py={10}
+            >
+                {techs.map((tech) => (
+                    <TechCard key={tech.name} {...tech} />
+                ))}
+            </Flex>
+        </Box>
     )
 }

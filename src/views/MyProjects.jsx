@@ -8,7 +8,7 @@ import 'swiper/css/effect-coverflow';
 
 function MyProjects() {
     return (
-        <div className="carousel-container" style={{ width: '100%', maxWidth: '1200px', margin: '0 auto', position: 'relative' }}>
+        <div className="carousel-container" style={{ width: '100%', margin: '0 auto', position: 'relative' }}>
             <h1 style={{ textAlign: 'center', marginBottom: "30px", fontWeight: '100', fontStyle: 'italic', fontSize: 'clamp(2.5rem, 6vw, 72px)' }}>Alguns Projetos</h1>
 
             <Swiper
@@ -17,7 +17,7 @@ function MyProjects() {
                 centeredSlides={true}
                 slidesPerView={'auto'}
                 coverflowEffect={{
-                    rotate: 30,
+                    rotate: 20,
                     stretch: 0,
                     depth: 100,
                     modifier: 1,
