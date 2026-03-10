@@ -6,47 +6,60 @@ import { DiMsqlServer } from "react-icons/di"
 
 const TechCard = ({ icon, name, color, favorite }) => {
     return (
-        <Box
-            w={{ base: "100px", sm: "120px", md: "150px", lg: "160px" }}
-            h={{ base: "100px", sm: "120px", md: "150px", lg: "160px" }}
+        <Box position="relative">
+            {/* Glow de fundo */}
+            <Box
+                position="absolute"
+                top="-2px" left="-2px" right="-2px" bottom="-2px"
+                bg={favorite ? "linear-gradient(to right, #ecb144, #e3c178)" : "linear-gradient(to right, #5a03fc, #8247e6)"}
+                borderRadius="2xl"
+                filter={{ base: "blur(10px)", md: "blur(15px)" }}
+                opacity={{ base: favorite ? 0.3 : 0.1, md: favorite ? 0.4 : 0.05 }}
+                transition="opacity 0.3s"
+                _groupHover={{ opacity: 0.5 }}
+                zIndex={0}
+            />
 
-            bg="gray.100"
-            _dark={{ bg: "gray.700" }}
-            borderRadius="2xl"
-
-            borderWidth={favorite ? "2px" : "0px"}
-            borderColor="yellow.400"
-            borderStyle="solid"
-
-            boxShadow={favorite ? "0 0 10px rgba(236, 201, 75, 0.4)" : "none"}
-
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            transition="all 0.3s"
-            cursor="pointer"
-            _hover={{
-                transform: "translateY(-5px)",
-                boxShadow: favorite ? "0 0 15px rgba(236, 201, 75, 0.6)" : "lg",
-                bg: "gray.200",
-                _dark: { bg: "gray.600" },
-            }}
-        >
-            <VStack spacing={{ base: 1, md: 3 }}>
-                <Icon
-                    as={icon}
-                    boxSize={{ base: 8, sm: 10, md: 14 }}
-                    color={color || "gray.500"}
-                />
-                <Text
-                    fontWeight="bold"
-                    fontSize={{ base: "xs", sm: "sm", md: "md" }}
-                    color="gray.600"
-                    _dark={{ color: "gray.200" }}
-                >
-                    {name}
-                </Text>
-            </VStack>
+            {/* Card Principal de Vidro */}
+            <Flex
+                position="relative"
+                zIndex={1}
+                direction="column"
+                w={{ base: "100px", sm: "120px", md: "150px", lg: "160px" }}
+                h={{ base: "100px", sm: "120px", md: "150px", lg: "160px" }}
+                bg="rgba(255, 255, 255, 0.03)"
+                backdropFilter="blur(10px)"
+                borderRadius="2xl"
+                border="1px solid"
+                borderColor={favorite ? "rgba(236, 177, 68, 0.6)" : "rgba(255, 255, 255, 0.05)"}
+                boxShadow="0 8px 32px rgba(0, 0, 0, 0.1)"
+                alignItems="center"
+                justifyContent="center"
+                transition="all 0.3s"
+                cursor="pointer"
+                role="group"
+                _hover={{
+                    transform: "translateY(-5px)",
+                    bg: "rgba(255, 255, 255, 0.06)",
+                    borderColor: favorite ? "rgba(236, 177, 68, 1)" : "rgba(255, 255, 255, 0.2)",
+                    boxShadow: favorite ? "0 10px 40px rgba(236, 177, 68, 0.3)" : "0 10px 40px rgba(90, 3, 252, 0.2)",
+                }}
+            >
+                <VStack spacing={{ base: 2, md: 3 }}>
+                    <Icon
+                        as={icon}
+                        boxSize={{ base: 8, sm: 10, md: 14 }}
+                        color={color || "gray.400"}
+                    />
+                    <Text
+                        fontWeight="bold"
+                        fontSize={{ base: "xs", sm: "sm", md: "md" }}
+                        color="#e1d8ed"
+                    >
+                        {name}
+                    </Text>
+                </VStack>
+            </Flex>
         </Box>
     )
 }

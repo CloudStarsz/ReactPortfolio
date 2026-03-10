@@ -1,3 +1,4 @@
+import { Box, Heading } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';
 

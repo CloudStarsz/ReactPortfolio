@@ -1,8 +1,15 @@
 import { useState } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 
-function Navigation({ items }) {
+function Navigation({ items, onNavigate }) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleClick = (path) => {
+    if (onNavigate) {
+      onNavigate(path);
+    }
+    setIsOpen(false);
+  };
 
   return (
     <nav className="main-nav">
@@ -11,8 +18,8 @@ function Navigation({ items }) {
       </div>
       <ul className={isOpen ? "nav-menu active" : "nav-menu"}>
         {items.map((item, index) => (
-          <li key={index} className="nav-item">
-            {item}
+          <li key={index} className="nav-item" onClick={() => handleClick(item.path)}>
+            {item.name}
           </li>
         ))}
       </ul>

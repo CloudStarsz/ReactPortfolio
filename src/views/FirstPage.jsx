@@ -1,4 +1,4 @@
-import { Box, VStack, Text, Heading, Stack } from "@chakra-ui/react";
+import { Box, VStack, Text, Heading, Stack, Flex } from "@chakra-ui/react";
 import Button from '../components/Button.jsx'; // Mantendo seu botão original
 
 export default function FirstPage() {
@@ -11,7 +11,6 @@ export default function FirstPage() {
       justifyContent="center"
     >
       <VStack spacing={6} textAlign="center" px={4}>
-
         <Text
           fontSize="clamp(2rem, 5vw, 96px)"
           fontWeight="100"
@@ -51,7 +50,6 @@ export default function FirstPage() {
         <Box pt={10}>
           <Button texto='Conhecer meu trabalho' id='visit_my_work-btn' />
         </Box>
-
       </VStack>
     </Box>
   );
