@@ -6,15 +6,19 @@ import MyProjects from './views/MyProjects.jsx'
 import Scroll from './components/Scroll.jsx'
 import TechPage from './views/TechPage.jsx'
 import { Provider } from "./components/ui/provider.jsx";
-import AboutPage from './views/AboutPage'
+import AboutPage from './views/AboutPage';
+import MatrixBackground from './components/MatrixBackground.jsx';
 
 function App() {
   return (
     <Provider>
+      <MatrixBackground />
       <header className="site-header">
         <div className="logo">Cloud IT Systems</div>
         <Navigation items={['Home', 'Resume', 'Contact',]} />
-        <Button texto='Fazer orçamento' />
+        <div className="header-action">
+          <Button texto='Fazer orçamento' />
+        </div>
       </header>
       <div className="snap-container">
         <section className="area area-1">

@@ -2,8 +2,32 @@ $bgcolor: #0b001a;
 $focus_color: #5a03fc;
 $hover_color: #3f03ad;
 
+// breakpoints
+$tablet: 768px;
+$mobile: 480px;
+
 @mixin transition($props...) {
   transition: $props;
+}
+
+@mixin respond-to($media) {
+  @if $media ==smartphone {
+    @media (max-width: $mobile) {
+      @content;
+    }
+  }
+
+  @else if $media ==tablet {
+    @media (max-width: $tablet) {
+      @content;
+    }
+  }
+
+  @else if $media ==pc {
+    @media (min-width: 769px) {
+      @content;
+    }
+  }
 }
 
 * {
@@ -18,15 +42,18 @@ html,
 body {
   height: 100%;
   overflow: hidden;
-  background-color: $bgcolor;
+  background-color: $bgcolor; // Retornou a cor estática do site para o fundo real
   color: #e1d8ed;
 }
 
 .snap-container {
-  height: 100vh;
+  height: 100vh; // Fallback
+  height: 100dvh;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
+  position: relative;
+  z-index: 1;
 
   &::-webkit-scrollbar {
     width: 0px;
@@ -35,7 +62,8 @@ body {
 }
 
 .area {
-  height: 100vh;
+  height: 100vh; // Fallback
+  height: 100dvh;
   width: 100vw;
   scroll-snap-align: start;
   display: flex;
@@ -56,6 +84,14 @@ body {
   text-shadow: 0 0 10px $hover_color;
   color: $focus_color;
   cursor: pointer;
+
+  @include respond-to(tablet) {
+    font-size: 20px;
+  }
+
+  @include respond-to(smartphone) {
+    font-size: 18px;
+  }
 }
 
 header {
@@ -69,20 +105,88 @@ header {
   justify-content: space-between;
   align-items: center;
   z-index: 100;
-  background-color: $bgcolor;
+  background-color: transparent; // Header sem fundo borrado
 
-  nav ul {
+  @include respond-to(tablet) {
+    padding: 1rem;
+    width: 95vw;
+  }
+
+  .header-action {
+    @include respond-to(tablet) {
+      display: none; // Hides button on tablet/mobile to save space
+    }
+  }
+
+  .main-nav {
     display: flex;
-    gap: 40px;
+    align-items: center;
 
-    li {
+    .menu-icon {
+      display: none;
       cursor: pointer;
-      position: relative;
-      @include transition(color 0.2s ease, font-size 0.5s ease);
+      color: #e1d8ed;
 
-      &:hover {
-        color: white;
-        font-size: 18px;
+      @include respond-to(tablet) {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 40px;
+
+      @include respond-to(tablet) {
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: rgba(11, 0, 26, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 20px;
+        gap: 20px;
+        width: 200px;
+
+        transform: translateY(-20px);
+        opacity: 0;
+        visibility: hidden;
+        @include transition(all 0.3s ease-in-out);
+
+        &.active {
+          transform: translateY(0);
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+
+      li {
+        cursor: pointer;
+        position: relative;
+        @include transition(color 0.2s ease, font-size 0.5s ease);
+
+        @include respond-to(pc) {
+          &:hover {
+            color: white;
+            font-size: 18px;
+          }
+        }
+
+        @include respond-to(tablet) {
+          font-size: 18px;
+          text-align: center;
+          padding: 10px 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          &:hover {
+            color: $focus_color;
+          }
+        }
       }
     }
   }
@@ -90,8 +194,44 @@ header {
 
 .swiper-button-prev,
 .swiper-button-next {
-  color: #9b7fff !important;
-  transform: scale(1);
+  color: #e1d8ed !important;
+  width: 50px !important;
+  height: 50px !important;
+  @include transition(all 0.3s ease);
+
+  &:after {
+    font-size: 20px !important;
+    font-weight: 800;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  @include respond-to(smartphone) {
+    width: 40px !important;
+    height: 40px !important;
+
+    &:after {
+      font-size: 16px !important;
+    }
+  }
+}
+
+.swiper-button-prev {
+  left: 10px !important;
+
+  @include respond-to(pc) {
+    left: 20px !important;
+  }
+}
+
+.swiper-button-next {
+  right: 10px !important;
+
+  @include respond-to(pc) {
+    right: 20px !important;
+  }
 }
 
 .fixed-footer-arrow {

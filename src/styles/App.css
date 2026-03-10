@@ -16,9 +16,12 @@ body {
 
 .snap-container {
   height: 100vh;
+  height: 100dvh;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
+  position: relative;
+  z-index: 1;
 }
 .snap-container::-webkit-scrollbar {
   width: 0px;
@@ -27,6 +30,7 @@ body {
 
 .area {
   height: 100vh;
+  height: 100dvh;
   width: 100vw;
   scroll-snap-align: start;
   display: flex;
@@ -47,6 +51,16 @@ body {
   color: #5a03fc;
   cursor: pointer;
 }
+@media (max-width: 768px) {
+  .logo {
+    font-size: 20px;
+  }
+}
+@media (max-width: 480px) {
+  .logo {
+    font-size: 18px;
+  }
+}
 
 header {
   position: fixed;
@@ -59,26 +73,131 @@ header {
   justify-content: space-between;
   align-items: center;
   z-index: 100;
-  background-color: #0b001a;
+  background-color: transparent;
 }
-header nav ul {
+@media (max-width: 768px) {
+  header {
+    padding: 1rem;
+    width: 95vw;
+  }
+}
+@media (max-width: 768px) {
+  header .header-action {
+    display: none;
+  }
+}
+header .main-nav {
+  display: flex;
+  align-items: center;
+}
+header .main-nav .menu-icon {
+  display: none;
+  cursor: pointer;
+  color: #e1d8ed;
+}
+@media (max-width: 768px) {
+  header .main-nav .menu-icon {
+    display: flex;
+    align-items: center;
+  }
+}
+header .main-nav .nav-menu {
   display: flex;
   gap: 40px;
 }
-header nav ul li {
+@media (max-width: 768px) {
+  header .main-nav .nav-menu {
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: rgba(11, 0, 26, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    gap: 20px;
+    width: 200px;
+    transform: translateY(-20px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+  }
+  header .main-nav .nav-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+header .main-nav .nav-menu li {
   cursor: pointer;
   position: relative;
   transition: color 0.2s ease, font-size 0.5s ease;
 }
-header nav ul li:hover {
-  color: white;
-  font-size: 18px;
+@media (min-width: 769px) {
+  header .main-nav .nav-menu li:hover {
+    color: white;
+    font-size: 18px;
+  }
+}
+@media (max-width: 768px) {
+  header .main-nav .nav-menu li {
+    font-size: 18px;
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  header .main-nav .nav-menu li:last-child {
+    border-bottom: none;
+  }
+  header .main-nav .nav-menu li:hover {
+    color: #5a03fc;
+  }
 }
 
 .swiper-button-prev,
 .swiper-button-next {
-  color: #9b7fff !important;
-  transform: scale(1);
+  color: #e1d8ed !important;
+  width: 50px !important;
+  height: 50px !important;
+  transition: all 0.3s ease;
+}
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 20px !important;
+  font-weight: 800;
+}
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  transform: scale(1.1);
+}
+@media (max-width: 480px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .swiper-button-prev:after,
+  .swiper-button-next:after {
+    font-size: 16px !important;
+  }
+}
+
+.swiper-button-prev {
+  left: 10px !important;
+}
+@media (min-width: 769px) {
+  .swiper-button-prev {
+    left: 20px !important;
+  }
+}
+
+.swiper-button-next {
+  right: 10px !important;
+}
+@media (min-width: 769px) {
+  .swiper-button-next {
+    right: 20px !important;
+  }
 }
 
 .fixed-footer-arrow {
@@ -105,12 +224,14 @@ header nav ul li:hover {
   border-radius: 50%;
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   background-color: transparent;
-  animation: bounce 2s infinite;
 }
 .arrow-icon svg {
   transition: all 0.3s ease;
   opacity: 1;
   transform: scale(1);
+}
+.arrow-icon {
+  animation: bounce 2s infinite;
 }
 
 .is-ended .arrow-icon {
