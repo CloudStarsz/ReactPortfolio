@@ -1,6 +1,9 @@
 import { Box, Stack, VStack, Image, Text, Heading } from "@chakra-ui/react";
 import escritoroniImg from "../img/Escritoroni.jpeg";
+import { useTranslation } from 'react-i18next';
+
 export default function AboutPage() {
+    const { t } = useTranslation();
     const photoUrl = escritoroniImg;
 
     return (
@@ -15,7 +18,7 @@ export default function AboutPage() {
                     fontStyle="italic"
                     lineHeight="1.1"
                 >
-                    Sobre Mim
+                    {t('about.title')}
                 </Heading>
 
                 <Stack
@@ -65,16 +68,16 @@ export default function AboutPage() {
                         boxShadow="0 8px 32px rgba(0, 0, 0, 0.1)"
                     >
                         <Text fontSize={{ base: "sm", md: "xl" }} fontWeight="medium" color="#e1d8ed">
-                            Olá! Sou <span style={{ background: 'linear-gradient(to right, #d6bcfa, #90cdf4)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: 'bold', fontSize: '1.2em' }}>Raoni Moraes</span>, <br style={{ display: 'none' }} /> Eng. de Computação e Developer Fullstack.
+                            {t('about.hello')}<span style={{ background: 'linear-gradient(to right, #d6bcfa, #90cdf4)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: 'bold', fontSize: '1.2em' }}>Raoni Moraes</span><span dangerouslySetInnerHTML={{ __html: t('about.role') }}></span>
                         </Text>
                         <Text fontSize={{ base: "xs", md: "lg" }} lineHeight="1.8" color="gray.400">
-                            Meu foco é entregar soluções web robustas e escaláveis. Minha especialidade reside na combinação da solidez do <Text as="span" color="#e1d8ed" fontWeight="bold">.NET (C#)</Text> no back-end com a interatividade do <Text as="span" color="#e1d8ed" fontWeight="bold">React</Text> no front-end.
+                            {t('about.p1_1')}<Text as="span" color="#e1d8ed" fontWeight="bold">.NET (C#)</Text>{t('about.p1_2')}<Text as="span" color="#e1d8ed" fontWeight="bold">React</Text>{t('about.p1_3')}
                         </Text>
                         <Text fontSize={{ base: "xs", md: "lg" }} lineHeight="1.8" color="gray.400">
-                            Mais do que apenas executar tarefas, meu objetivo é focar na engenharia da solução, aplicando princípios de Clean Code e metodologias ágeis para criar softwares performáticos e fáceis de manter.
+                            {t('about.p2')}
                         </Text>
                         <Text color="#d6bcfa" fontSize={{ base: "xs", md: "md" }} fontStyle="italic" mt={2}>
-                            Atualmente, desenvolvo sistemas críticos na ECR Engenharia e também possuo vivência em desenvolvimento mobile (Flutter/React Native).
+                            {t('about.p3')}
                         </Text>
                     </VStack>
                 </Stack>

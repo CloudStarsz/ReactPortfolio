@@ -1,0 +1,130 @@
+{
+  "header": {
+    "logo": "Cloud IT Systems",
+    "nav_home": "Home",
+    "nav_resume": "Resume",
+    "nav_contact": "Contact",
+    "btn_budget": "Get a quote"
+  },
+  "home": {
+    "hello": "Hi, I'm",
+    "name": "Raoni Moraes",
+    "role1": "Fullstack Developer",
+    "role2": "Web Developer",
+    "role3": "Mobile Developer",
+    "btn_work": "Check out my work"
+  },
+  "about": {
+    "title": "About Me",
+    "hello": "Hello! I am ",
+    "role": ", <br style={{ display: 'none' }} /> Computer Engineer & Fullstack Developer.",
+    "p1_1": "My focus is delivering robust and scalable web solutions. My specialty lies in combining the solidity of ",
+    "p1_2": " on the back-end with the interactivity of ",
+    "p1_3": " on the front-end.",
+    "p2": "More than just completing tasks, my goal is to focus on solution engineering, applying Clean Code principles and agile methodologies to build high-performance and maintainable software.",
+    "p3": "I currently develop critical systems at ECR Engenharia and also have experience in mobile development (Flutter/React Native)."
+  },
+  "tech": {
+    "title": "My Stack"
+  },
+  "projects": {
+    "title": "Some Projects",
+    "placeholder": "Project"
+  },
+  "contact": {
+    "title": "Contact",
+    "linkedin_desc": "Connect with me"
+  },
+  "orcamento": {
+    "title": "Get a Quote",
+    "subtitle1": "Have a project in mind? <br />Send an email to",
+    "subtitle2": " with the following subject:",
+    "subject": "Quote Request - Software Development",
+    "description": "And leave a message describing your idea and contacts. We will get in touch with you shortly!",
+    "btn_send": "Send Email"
+  },
+  "resume": {
+    "section_exp": "Professional Experience",
+    "section_edu": "Education",
+    "section_lang": "Languages",
+    "section_skills": "Technical Skills",
+    "section_highlights": "Highlights & Soft Skills",
+    "linkedin_btn": "LinkedIn Profile",
+    "data": {
+        "informacoes_pessoais": {
+            "nome": "Raoni Moraes",
+            "titulo_profissional": "Fullstack Developer focused on .NET",
+            "linkedin": "https://www.linkedin.com/in/raonirafimoraes/",
+            "email": "raynix4@gmail.com",
+            "telefone": "(11) 96728-7083",
+            "localizacao": "São Paulo, Brazil"
+        },
+        "resumo": "Fullstack Developer passionate about creating robust and scalable solutions, with solid experience in the .NET ecosystem. Specialist in modern architectures like DDD and Clean Architecture.",
+        "experiencia_profissional": [
+            {
+                "empresa": "ECR Engenharia",
+                "localidade": "São Paulo, Brazil",
+                "cargo": "Mid-level .NET Developer",
+                "data_inicio": "Oct 2024",
+                "data_fim": "Present",
+                "descricao": "Technical lead in the development of a specialized ERP for civil construction. Responsible for structural architecture improvements, migrating from pure ADO.NET to Dapper.",
+                "tecnologias": ["Dapper", ".NET 8", "ASP.NET Core", "SQL Server", "DDD", "Clean Architecture", "Javascript", "Bootstrap"]
+            },
+            {
+                "empresa": "FUNÇÃO INFORMÁTICA",
+                "localidade": "São Paulo, Brazil",
+                "cargo": "Full Stack .NET Developer",
+                "data_inicio": "Feb 2024",
+                "data_fim": "Oct 2024",
+                "descricao": "Strategic role focusing on Architecture and Cross-Cutting Concerns. Developed internal frameworks and high-traffic Restful APIs.",
+                "tecnologias": ["ASP.NET MVC", "Web API", "TFS", "RPA", "SQL Server", "SOLID", "Clean Code"]
+            },
+            {
+                "empresa": "FUNÇÃO INFORMÁTICA",
+                "localidade": "São Paulo, Brazil",
+                "cargo": "Software Tester",
+                "data_inicio": "Apr 2021",
+                "data_fim": "Jan 2024",
+                "descricao": "Performed UI, unit, and API testing on financial market applications.",
+                "tecnologias": ["Selenium", "Unit Testing", "API Testing"]
+            }
+        ],
+        "competencias": {
+            "Backend & Core": [".NET 8", "C#", "ASP.NET Core", "Entity Framework", "Dapper", "LINQ", "JWT/OAuth2", "Web API", "Microservices", "Java", "Python", "Rust", "MediatR", "SignalR"],
+            "Frontend & Mobile": ["React", "Next.js", "TypeScript", "JavaScript", "Flutter", "Dart", "Tailwind CSS", "Bootstrap"],
+            "Database & DevOps": ["SQL Server", "MySQL", "Redis", "RabbitMQ", "Docker", "Git/TFS", "Azure DevOps", "CI/CD", "Serilog/Observability", "Elasticsearch"],
+            "Architecture & Practices": ["DDD", "Clean Architecture", "SOLID", "Clean Code", "Design Patterns", "TDD", "Unit Testing (xUnit)", "Scrum", "Kanban"]
+        },
+        "formacao_academica": [
+            {
+                "instituicao": "PUC Minas",
+                "curso": "Software Engineering",
+                "tipo": "Postgraduate",
+                "data_inicio": "Oct 2025",
+                "data_fim": "Oct 2026",
+                "status": "In Progress"
+            },
+            {
+                "instituicao": "São Judas Tadeu University",
+                "curso": "Computer Engineering",
+                "tipo": "Bachelor's Degree",
+                "data_inicio": "Aug 2019",
+                "data_fim": "Aug 2024",
+                "status": "Completed"
+            }
+        ],
+        "idiomas": [
+            {
+                "idioma": "English",
+                "nivel": "Advanced",
+                "observacao": "C1 > C2 level"
+            }
+        ],
+        "destaques": [
+            { "titulo": "Problem Solving", "descricao": "Deep investigation of bottlenecks, refactoring, and extreme performance optimization." },
+            { "titulo": "Product Mindset", "descricao": "Focus on value delivery and direct impact of features for the end user." },
+            { "titulo": "Resilient Architecture", "descricao": "Vision beyond code, focusing on scalability, security, and sustainable design." }
+        ]
+    }
+  }
+}

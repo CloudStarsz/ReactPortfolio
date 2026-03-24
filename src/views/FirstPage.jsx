@@ -1,7 +1,9 @@
 import { Box, VStack, Text, Heading, Stack, Flex } from "@chakra-ui/react";
 import Button from '../components/Button.jsx'; // Mantendo seu botão original
+import { useTranslation } from 'react-i18next';
 
 export default function FirstPage() {
+  const { t } = useTranslation();
   return (
     <Box
       className='home'
@@ -17,7 +19,7 @@ export default function FirstPage() {
           lineHeight="1"
           className='presentation-intro'
         >
-          Olá, sou o
+          {t('home.hello')}
         </Text>
 
         <Heading
@@ -29,7 +31,7 @@ export default function FirstPage() {
           className='presentation-name'
           pb={4}
         >
-          Raoni Moraes
+          {t('home.name')}
         </Heading>
 
         <Stack
@@ -40,15 +42,15 @@ export default function FirstPage() {
           fontSize={{ base: "lg", md: "2xl" }}
           fontWeight="300"
         >
-          <Text className='role'>Fullstack Developer</Text>
+          <Text className='role'>{t('home.role1')}</Text>
           <Text display={{ base: "none", md: "block" }}>•</Text>
-          <Text className='role'>Desenvolvedor Web</Text>
+          <Text className='role'>{t('home.role2')}</Text>
           <Text display={{ base: "none", md: "block" }}>•</Text>
-          <Text className='role'>Desenvolvedor Mobile</Text>
+          <Text className='role'>{t('home.role3')}</Text>
         </Stack>
 
         <Box pt={10}>
-          <Button texto='Conhecer meu trabalho' id='visit_my_work-btn' />
+          <Button texto={t('home.btn_work')} id='visit_my_work-btn' />
         </Box>
       </VStack>
     </Box>

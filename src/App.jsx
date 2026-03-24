@@ -14,6 +14,8 @@ import ResumePage from './views/ResumePage.jsx';
 import ContactPage from './views/ContactPage.jsx';
 import OrcamentoPage from './views/OrcamentoPage.jsx';
 import MatrixBackground from './components/MatrixBackground.jsx';
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './components/LanguageSelector.jsx';
 
 // Novo componente para a página Home que encapsula o scroll
 function HomePage() {
@@ -42,6 +44,7 @@ function HomePage() {
 function MainLayout() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
 
   const handleNavigation = (path) => {
     if (path === '/') {
@@ -61,18 +64,21 @@ function MainLayout() {
     <>
       <MatrixBackground />
       <header className="site-header">
-        <div className="logo" onClick={() => handleNavigation('/')}>Cloud IT Systems</div>
+        <div className="logo" onClick={() => handleNavigation('/')}>{t('header.logo')}</div>
         <Navigation 
           items={[
-            { name: 'Home', path: '/' }, 
-            { name: 'Resume', path: '/resume' }, 
-            { name: 'Contact', path: '/contact' }
+            { name: t('header.nav_home'), path: '/' }, 
+            { name: t('header.nav_resume'), path: '/resume' }, 
+            { name: t('header.nav_contact'), path: '/contact' }
           ]} 
           onNavigate={handleNavigation}
         />
-        <div className="header-action">
-          <Button texto='Fazer orçamento' onClick={() => handleNavigation('/orcamento')} />
-        </div>
+        <Flex align="center">
+          <LanguageSelector />
+          <div className="header-action">
+            <Button texto={t('header.btn_budget')} onClick={() => handleNavigation('/orcamento')} />
+          </div>
+        </Flex>
       </header>
 
       {/* Roteamento das páginas independentes */}
@@ -105,7 +111,7 @@ function PageWrapper({ children }) {
   );
 }
 
-import { Box } from '@chakra-ui/react'; // Import necessário para o Layout
+import { Box, Flex } from '@chakra-ui/react'; // Import necessário para o Layout
 
 function App() {
   return (

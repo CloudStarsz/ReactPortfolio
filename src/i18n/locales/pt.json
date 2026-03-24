@@ -1,0 +1,130 @@
+{
+  "header": {
+    "logo": "Cloud IT Systems",
+    "nav_home": "Home",
+    "nav_resume": "Currículo",
+    "nav_contact": "Contato",
+    "btn_budget": "Fazer orçamento"
+  },
+  "home": {
+    "hello": "Olá, sou o",
+    "name": "Raoni Moraes",
+    "role1": "Fullstack Developer",
+    "role2": "Desenvolvedor Web",
+    "role3": "Desenvolvedor Mobile",
+    "btn_work": "Conhecer meu trabalho"
+  },
+  "about": {
+    "title": "Sobre Mim",
+    "hello": "Olá! Sou ",
+    "role": ", <br style={{ display: 'none' }} /> Eng. de Computação e Developer Fullstack.",
+    "p1_1": "Meu foco é entregar soluções web robustas e escaláveis. Minha especialidade reside na combinação da solidez do ",
+    "p1_2": " no back-end com a interatividade do ",
+    "p1_3": " no front-end.",
+    "p2": "Mais do que apenas executar tarefas, meu objetivo é focar na engenharia da solução, aplicando princípios de Clean Code e metodologias ágeis para criar softwares performáticos e fáceis de manter.",
+    "p3": "Atualmente, desenvolvo sistemas críticos na ECR Engenharia e também possuo vivência em desenvolvimento mobile (Flutter/React Native)."
+  },
+  "tech": {
+    "title": "Minha Stack"
+  },
+  "projects": {
+    "title": "Alguns Projetos",
+    "placeholder": "Projeto"
+  },
+  "contact": {
+    "title": "Contato",
+    "linkedin_desc": "Conecte-se comigo"
+  },
+  "orcamento": {
+    "title": "Fazer Orçamento",
+    "subtitle1": "Tem um projeto em mente? <br />Envie um e-mail para",
+    "subtitle2": " com o seguinte assunto:",
+    "subject": "Solicitação de orçamento - Desenvolvimento",
+    "description": "E com a mensagem descrevendo a sua ideia e contatos. Em breve entraremos em contato com você para alinharmos as necessidades do seu projeto!",
+    "btn_send": "Enviar E-mail"
+  },
+  "resume": {
+    "section_exp": "Experiência Profissional",
+    "section_edu": "Formação Acadêmica",
+    "section_lang": "Idiomas",
+    "section_skills": "Competências Técnicas",
+    "section_highlights": "Destaques Profissionais",
+    "linkedin_btn": "LinkedIn Profile",
+    "data": {
+        "informacoes_pessoais": {
+            "nome": "Raoni Moraes",
+            "titulo_profissional": "Desenvolvedor Full Stack com foco em .NET",
+            "linkedin": "https://www.linkedin.com/in/raonirafimoraes/",
+            "email": "raynix4@gmail.com",
+            "telefone": "(11) 96728-7083",
+            "localizacao": "São Paulo, SP"
+        },
+        "resumo": "Desenvolvedor Full Stack apaixonado por criar soluções robustas e escaláveis, com sólida experiência no ecossistema .NET. Especialista em arquiteturas modernas como DDD e Clean Architecture, focado em entregar software de alta qualidade e alinhar tecnologia aos objetivos de negócio.",
+        "experiencia_profissional": [
+            {
+                "empresa": "ECR Engenharia",
+                "localidade": "São Paulo - SP",
+                "cargo": "Desenvolvedor .NET Pleno",
+                "data_inicio": "10/2024",
+                "data_fim": "Atualmente",
+                "descricao": "Liderança técnica no desenvolvimento de um ERP especializado para a construção civil. Responsável por melhorias estruturais de arquitetura, incluindo a migração da camada de repositório de ADO.NET puro para Dapper, o que otimizou a manutenibilidade e performance. Conquistei uma redução drástica de 99% no tempo de processamento de rotinas críticas.",
+                "tecnologias": ["Dapper", ".NET 8", "ASP.NET Core", "SQL Server", "DDD", "Clean Architecture", "Javascript", "Bootstrap"]
+            },
+            {
+                "empresa": "FUNÇÃO INFORMÁTICA",
+                "localidade": "São Paulo - SP",
+                "cargo": "Desenvolvedor .NET Full Stack",
+                "data_inicio": "02/2024",
+                "data_fim": "10/2024",
+                "descricao": "Atuação estratégica com foco em Arquitetura e Cross-Cutting Concerns. Desenvolvi frameworks internos e APIs Restful de alto tráfego.",
+                "tecnologias": ["ASP.NET MVC", "Web API", "TFS", "RPA", "SQL Server", "SOLID", "Clean Code"]
+            },
+            {
+                "empresa": "FUNÇÃO INFORMÁTICA",
+                "localidade": "São Paulo - SP",
+                "cargo": "Software Tester",
+                "data_inicio": "04/2021",
+                "data_fim": "01/2024",
+                "descricao": "Realização de testes de tela, unitários e de API em aplicações do mercado financeiro.",
+                "tecnologias": ["Selenium", "Unit Testing", "API Testing"]
+            }
+        ],
+        "competencias": {
+            "Backend & Core": [".NET 8", "C#", "ASP.NET Core", "Entity Framework", "Dapper", "LINQ", "JWT/OAuth2", "Web API", "Microservices", "Java", "Python", "Rust", "MediatR", "SignalR"],
+            "Frontend & Mobile": ["React", "Next.js", "TypeScript", "JavaScript", "Flutter", "Dart", "Tailwind CSS", "Bootstrap"],
+            "Database & DevOps": ["SQL Server", "MySQL", "Redis", "RabbitMQ", "Docker", "Git/TFS", "Azure DevOps", "CI/CD", "Serilog/Observability", "Elasticsearch"],
+            "Architecture & Practices": ["DDD", "Clean Architecture", "SOLID", "Clean Code", "Design Patterns", "TDD", "Unit Testing (xUnit)", "Scrum", "Kanban"]
+        },
+        "formacao_academica": [
+            {
+                "instituicao": "PUC Minas",
+                "curso": "Engenharia de Software",
+                "tipo": "Especialização",
+                "data_inicio": "10/2025",
+                "data_fim": "10/2026",
+                "status": "Cursando"
+            },
+            {
+                "instituicao": "Universidade São Judas Tadeu",
+                "curso": "Engenharia da Computação",
+                "tipo": "Bacharelado",
+                "data_inicio": "08/2019",
+                "data_fim": "08/2024",
+                "status": "Concluído"
+            }
+        ],
+        "idiomas": [
+            {
+                "idioma": "Inglês",
+                "nivel": "Avançado",
+                "observacao": "Nível C1 > C2"
+            }
+        ],
+        "destaques": [
+            { "titulo": "Problem Solving", "descricao": "Investigação profunda de gargalos, refatoração e otimização extrema de performance." },
+            { "titulo": "Mentalidade de Produto", "descricao": "Foco na entrega de valor e no impacto direto das features para o usuário final." },
+            { "titulo": "Arquitetura Resiliente", "descricao": "Visão além do código, focando na escalabilidade, segurança e design sustentável." }
+        ]
+    }
+  }
+}

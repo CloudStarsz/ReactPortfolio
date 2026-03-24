@@ -3,6 +3,7 @@ import { FaHtml5, FaCss3Alt, FaReact, FaJava, FaPython, FaDocker, FaRust, FaGitA
 import { IoLogoJavascript } from "react-icons/io5"
 import { SiDotnet, SiDart, SiTypescript } from "react-icons/si"
 import { DiMsqlServer } from "react-icons/di"
+import { useTranslation } from "react-i18next"
 
 const TechCard = ({ icon, name, color, favorite }) => {
     return (
@@ -65,6 +66,7 @@ const TechCard = ({ icon, name, color, favorite }) => {
 }
 
 export default function TechPage() {
+    const { t } = useTranslation();
     const techs = [
         { name: "HTML5", icon: FaHtml5, color: "#E34F26" },
         { name: "CSS3", icon: FaCss3Alt, color: "#1572B6" },
@@ -84,7 +86,7 @@ export default function TechPage() {
     return (
         <Box w="100%">
             <h1 style={{ textAlign: 'center', marginBottom: "30px", fontWeight: '100', fontStyle: 'italic', fontSize: 'clamp(2.5rem, 6vw, 72px)' }}>
-                Minha Stack
+                {t('tech.title')}
             </h1>
             <Flex
                 wrap="wrap"
