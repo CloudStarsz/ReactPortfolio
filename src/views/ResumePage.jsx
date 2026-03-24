@@ -60,18 +60,6 @@ export default function ResumePage() {
                                 <Text>{data.informacoes_pessoais.localizacao}</Text>
                                 <Icon as={FaMapMarkerAlt} color="#5a03fc" />
                             </Flex>
-                            <Link href={`https://wa.me/5511967287083`} isExternal _hover={{ color: "white" }}>
-                                <Flex align="center" gap={2}>
-                                    <Text>{data.informacoes_pessoais.telefone}</Text>
-                                    <Icon as={FaPhone} color="#5a03fc" />
-                                </Flex>
-                            </Link>
-                            <Link href={`mailto:${data.informacoes_pessoais.email}`} isExternal _hover={{ color: "white" }}>
-                                <Flex align="center" gap={2}>
-                                    <Text>{data.informacoes_pessoais.email}</Text>
-                                    <Icon as={FaEnvelope} color="#5a03fc" />
-                                </Flex>
-                            </Link>
                             <Link href={data.informacoes_pessoais.linkedin} isExternal _hover={{ color: "white" }}>
                                 <Flex align="center" gap={2}>
                                     <Text>{t('resume.linkedin_btn')}</Text>
