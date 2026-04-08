@@ -1,6 +1,7 @@
 import { Box, VStack, Text, Heading, Stack, Flex } from "@chakra-ui/react";
-import Button from '../components/Button.jsx'; // Mantendo seu botão original
+import Button from '../components/Button.jsx';
 import { useTranslation } from 'react-i18next';
+import { FaGithub } from 'react-icons/fa';
 
 export default function FirstPage() {
   const { t } = useTranslation();
@@ -53,6 +54,7 @@ export default function FirstPage() {
           <Button 
             texto={t('home.btn_work')} 
             id='visit_my_work-btn' 
+            leftIcon={<FaGithub />}
             onClick={() => window.open('https://github.com/CloudStarsz', '_blank')}
           />
         </Box>

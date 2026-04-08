@@ -154,6 +154,15 @@ header .main-nav .nav-menu li {
   }
 }
 
+.mobile-only {
+  display: none;
+}
+@media (max-width: 768px) {
+  .mobile-only {
+    display: block !important;
+  }
+}
+
 .swiper-button-prev,
 .swiper-button-next {
   color: #e1d8ed !important;

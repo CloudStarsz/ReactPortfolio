@@ -1,11 +1,12 @@
 import { Button as ChakraButton } from "@chakra-ui/react";
 
-function Button({texto , id, onClick}) {
+function Button({texto , id, onClick, leftIcon}) {
 
   return (
     <ChakraButton 
         id={id} 
         onClick={onClick}
+        leftIcon={leftIcon}
         size={{ base: "md", md: "lg" }}
         color="white"
         variant="solid" 

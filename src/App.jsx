@@ -69,7 +69,8 @@ function MainLayout() {
           items={[
             { name: t('header.nav_home'), path: '/' }, 
             { name: t('header.nav_resume'), path: '/resume' }, 
-            { name: t('header.nav_contact'), path: '/contact' }
+            { name: t('header.nav_contact'), path: '/contact' },
+            { name: t('header.btn_budget'), path: '/orcamento', mobileOnly: true }
           ]} 
           onNavigate={handleNavigation}
         />

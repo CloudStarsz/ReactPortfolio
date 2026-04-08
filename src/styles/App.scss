@@ -192,6 +192,14 @@ header {
   }
 }
 
+.mobile-only {
+  display: none;
+
+  @include respond-to(tablet) {
+    display: block !important;
+  }
+}
+
 .swiper-button-prev,
 .swiper-button-next {
   color: #e1d8ed !important;

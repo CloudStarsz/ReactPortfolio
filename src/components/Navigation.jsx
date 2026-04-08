@@ -18,7 +18,7 @@ function Navigation({ items, onNavigate }) {
       </div>
       <ul className={isOpen ? "nav-menu active" : "nav-menu"}>
         {items.map((item, index) => (
-          <li key={index} className="nav-item" onClick={() => handleClick(item.path)}>
+          <li key={index} className={`nav-item ${item.mobileOnly ? "mobile-only" : ""}`} onClick={() => handleClick(item.path)}>
             {item.name}
           </li>
         ))}
