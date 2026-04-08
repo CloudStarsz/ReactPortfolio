@@ -50,7 +50,11 @@ export default function FirstPage() {
         </Stack>
 
         <Box pt={10}>
-          <Button texto={t('home.btn_work')} id='visit_my_work-btn' />
+          <Button 
+            texto={t('home.btn_work')} 
+            id='visit_my_work-btn' 
+            onClick={() => window.open('https://github.com/CloudStarsz', '_blank')}
+          />
         </Box>
       </VStack>
     </Box>
