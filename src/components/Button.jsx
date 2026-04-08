@@ -6,7 +6,6 @@ function Button({texto , id, onClick, leftIcon}) {
     <ChakraButton 
         id={id} 
         onClick={onClick}
-        leftIcon={leftIcon}
         size={{ base: "md", md: "lg" }}
         color="white"
         variant="solid" 
@@ -20,7 +19,11 @@ function Button({texto , id, onClick, leftIcon}) {
         fontWeight="bold"
         border="1px solid rgba(255, 255, 255, 0.1)"
         boxShadow="0 4px 15px rgba(90, 3, 252, 0.4)"
+        display="flex"
+        alignItems="center"
+        gap={2}
     >
+        {leftIcon}
         {texto}
     </ChakraButton>
   );
