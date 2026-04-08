@@ -33,7 +33,8 @@
   },
   "contact": {
     "title": "Contato",
-    "linkedin_desc": "Conecte-se comigo"
+    "linkedin_desc": "Conecte-se comigo",
+    "email_desc": "Mande um e-mail"
   },
   "orcamento": {
     "title": "Fazer Orçamento",

@@ -33,7 +33,8 @@
   },
   "contact": {
     "title": "Contact",
-    "linkedin_desc": "Connect with me"
+    "linkedin_desc": "Connect with me",
+    "email_desc": "Send me an email"
   },
   "orcamento": {
     "title": "Get a Quote",

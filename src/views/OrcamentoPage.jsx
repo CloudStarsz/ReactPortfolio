@@ -27,7 +27,7 @@ export default function OrcamentoPage() {
 
                     <Flex position="relative" zIndex={1} direction="column" align="center" bg="rgba(255, 255, 255, 0.03)" backdropFilter="blur(10px)" border="1px solid rgba(255, 255, 255, 0.05)" borderRadius="3xl" p={{ base: 6, md: 12 }} boxShadow="0 8px 32px rgba(0, 0, 0, 0.1)" textAlign="center">
                         <Text fontSize={{ base: "sm", md: "xl" }} color="#e1d8ed" mb={6} lineHeight="1.8">
-                            <span dangerouslySetInnerHTML={{ __html: t('orcamento.subtitle1') }}></span> <Text as="span" style={{ background: 'linear-gradient(to right, #d6bcfa, #90cdf4)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: 'bold' }}> contato@exemplo.com </Text>{t('orcamento.subtitle2')}
+                            <span dangerouslySetInnerHTML={{ __html: t('orcamento.subtitle1') }}></span> <Text as="span" style={{ background: 'linear-gradient(to right, #d6bcfa, #90cdf4)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: 'bold' }}> contato.raonimoraes@gmail.com </Text>{t('orcamento.subtitle2')}
                         </Text>
 
                         <Box bg="rgba(0,0,0,0.3)" p={{ base: 3, md: 4 }} borderRadius="xl" border="1px solid rgba(255,255,255,0.1)" mb={8}>
@@ -40,7 +40,7 @@ export default function OrcamentoPage() {
 
                         <ChakraButton
                             as="a"
-                            href="mailto:contato@exemplo.com?subject=Solicitação de orçamento - Desenvolvimento"
+                            href="mailto:contato.raonimoraes@gmail.com?subject=Solicitação de orçamento - Desenvolvimento"
                             leftIcon={<FaEnvelope />}
                             size={{ base: "md", md: "lg" }}
                             color="white"
