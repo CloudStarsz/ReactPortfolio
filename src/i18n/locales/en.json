@@ -29,7 +29,25 @@
   },
   "projects": {
     "title": "Some Projects",
-    "placeholder": "Project"
+    "placeholder": "Project",
+    "list": [
+      {
+        "id": "tailtrack",
+        "name": "TailTrack",
+        "shortDescription": "Veterinary appointments scheduling app",
+        "description": "TailTrack is a Full-Stack application developed to facilitate project management and activity tracking (involving a cute cat mascot! 🐱). The project is currently structured as a Monorepo.",
+        "technologies": ["C# (.NET 9)", "React", "Vite", "Chakra UI", "Docker"],
+        "gallery": ["Screenshot_1.png", "Screenshot_2.png", "Screenshot_3.png", "Screenshot_4.png", "Screenshot_5.png", "Screenshot_6.png"]
+      },
+      {
+        "id": "shiftsync",
+        "name": "ShiftSync",
+        "shortDescription": "Time tracking management system",
+        "description": "ShiftSync is a comprehensive system for tracking timesheets, generating reports, and managing team hours.",
+        "technologies": [".NET", "React", "SQL Server"],
+        "gallery": []
+      }
+    ]
   },
   "contact": {
     "title": "Contact",

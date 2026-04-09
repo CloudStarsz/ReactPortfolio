@@ -74,6 +74,11 @@ header {
   align-items: center;
   z-index: 100;
   background-color: transparent;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+header.header-hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 @media (max-width: 768px) {
   header {

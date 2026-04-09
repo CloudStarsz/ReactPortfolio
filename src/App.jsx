@@ -13,6 +13,7 @@ import AboutPage from './views/AboutPage';
 import ResumePage from './views/ResumePage.jsx';
 import ContactPage from './views/ContactPage.jsx';
 import OrcamentoPage from './views/OrcamentoPage.jsx';
+import ProjectDetailsPage from './views/ProjectDetailsPage.jsx';
 import MatrixBackground from './components/MatrixBackground.jsx';
 import { useTranslation } from 'react-i18next';
 import LanguageSelector from './components/LanguageSelector.jsx';
@@ -90,6 +91,7 @@ function MainLayout() {
             <Route path="/resume" element={<PageWrapper><Box pt="100px" h="100dvh"><ResumePage /></Box></PageWrapper>} />
             <Route path="/contact" element={<PageWrapper><Box pt="100px" h="100dvh"><ContactPage /></Box></PageWrapper>} />
             <Route path="/orcamento" element={<PageWrapper><Box pt="100px" h="100dvh"><OrcamentoPage /></Box></PageWrapper>} />
+            <Route path="/project/:id" element={<PageWrapper><Box pt="100px" h="100dvh"><ProjectDetailsPage /></Box></PageWrapper>} />
           </Routes>
         </AnimatePresence>
       </Box>

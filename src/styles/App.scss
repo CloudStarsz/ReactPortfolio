@@ -106,6 +106,12 @@ header {
   align-items: center;
   z-index: 100;
   background-color: transparent; // Header sem fundo borrado
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &.header-hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
 
   @include respond-to(tablet) {
     padding: 1rem;
