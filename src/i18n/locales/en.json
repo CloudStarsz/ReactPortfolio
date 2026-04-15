@@ -93,7 +93,7 @@
                 "cargo": "Full Stack .NET Developer",
                 "data_inicio": "Feb 2024",
                 "data_fim": "Oct 2024",
-                "descricao": "Strategic role focusing on Architecture and Cross-Cutting Concerns. Developed internal frameworks and high-traffic Restful APIs.",
+                "descricao": "Acted in the maintenance, refactoring, and evolution of complex legacy systems using ASP.NET MVC and WebForms, gradually modernizing the architecture. Developed internal frameworks, modeled databases, integrated systems with RPA, and created high-traffic Restful APIs ensuring performance and stability.",
                 "tecnologias": ["ASP.NET MVC", "Web API", "TFS", "RPA", "SQL Server", "SOLID", "Clean Code"]
             },
             {

@@ -93,7 +93,7 @@
                 "cargo": "Desenvolvedor .NET Full Stack",
                 "data_inicio": "02/2024",
                 "data_fim": "10/2024",
-                "descricao": "Atuação estratégica com foco em Arquitetura e Cross-Cutting Concerns. Desenvolvi frameworks internos e APIs Restful de alto tráfego.",
+                "descricao": "Atuação na manutenção, refatoração e evolução de sistemas legados complexos utilizando ASP.NET MVC e WebForms, modernizando gradualmente a arquitetura. Desenvolvimento de frameworks internos, modelagem de banco de dados, integração de sistemas com RPA e criação de APIs Restful de alto tráfego garantindo performance e estabilidade.",
                 "tecnologias": ["ASP.NET MVC", "Web API", "TFS", "RPA", "SQL Server", "SOLID", "Clean Code"]
             },
             {
