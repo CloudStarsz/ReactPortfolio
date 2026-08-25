@@ -37,7 +37,7 @@ export default function ResumePage() {
     const data = t('resume.data', { returnObjects: true });
 
     return (
-        <Box p={{ base: 4, md: 12 }} w="100%" h="100%" display="flex" overflowY="auto" alignItems="flex-start">
+        <Box className="resume-page" p={{ base: 4, md: 12 }} w="100%" h="100%" display="flex" overflowY="auto" alignItems="flex-start">
             <VStack maxW="1100px" mx="auto" w="100%" pb={20} gap={10} align="stretch">
                 {/* Header Section */}
                 <MotionBox
@@ -217,7 +217,7 @@ export default function ResumePage() {
                             <Heading as="h2" size="md" color="#e1d8ed" textTransform="uppercase" letterSpacing="widest">{t('resume.section_skills')}</Heading>
                         </Flex>
                         <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} gap={4}>
-                            {Object.entries(data.competencias).map(([category, skills], i) => (
+                            {Object.entries(data.competencias).map(([category, skills]) => (
                                 <GlassCard key={category} glowColor="#5a03fc">
                                     <VStack align="start" gap={4}>
                                         <Text fontWeight="bold" color="#d6bcfa" fontSize="xs" textTransform="uppercase" letterSpacing="tighter">
@@ -252,4 +252,3 @@ export default function ResumePage() {
         </Box>
     );
 }
-

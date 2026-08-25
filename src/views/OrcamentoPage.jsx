@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 export default function OrcamentoPage() {
     const { t } = useTranslation();
     return (
-        <Box p={{ base: 4, md: 12 }} w="100%" h="100%" display="flex" alignItems="center">
+        <Box className="budget-page" p={{ base: 4, md: 12 }} w="100%" h="100%" display="flex" alignItems="center">
             <Box maxW="800px" mx="auto" w="100%">
                 <Heading as="h1" mb={{ base: 8, md: 12 }} textAlign="center" fontSize="clamp(2.5rem, 6vw, 72px)" fontWeight="100" fontStyle="italic">
                     {t('orcamento.title')}

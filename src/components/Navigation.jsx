@@ -13,13 +13,22 @@ function Navigation({ items, onNavigate }) {
 
   return (
     <nav className="main-nav">
-      <div className="menu-icon" onClick={() => setIsOpen(!isOpen)}>
+      <button
+        className="menu-icon"
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+        aria-controls="main-navigation-menu"
+        aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
+      >
         {isOpen ? <FiX size={28} /> : <FiMenu size={28} />}
-      </div>
-      <ul className={isOpen ? "nav-menu active" : "nav-menu"}>
-        {items.map((item, index) => (
-          <li key={index} className={`nav-item ${item.mobileOnly ? "mobile-only" : ""}`} onClick={() => handleClick(item.path)}>
-            {item.name}
+      </button>
+      <ul id="main-navigation-menu" className={isOpen ? "nav-menu active" : "nav-menu"}>
+        {items.map((item) => (
+          <li key={item.path} className={`nav-item ${item.mobileOnly ? "mobile-only" : ""}`}>
+            <button type="button" onClick={() => handleClick(item.path)}>
+              {item.name}
+            </button>
           </li>
         ))}
       </ul>

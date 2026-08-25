@@ -12,6 +12,8 @@ import {
   FaXmark,
 } from 'react-icons/fa6';
 import { tailTrackProject } from '../data/tailTrackProject.js';
+import useModalFocus from '../components/useModalFocus.js';
+import { getMotionSafeScrollBehavior } from '../utils/motion.js';
 import './TailTrackProjectPage.scss';
 
 const tailTrackImages = import.meta.glob('../images/Screenshot_*.png', {
@@ -31,12 +33,12 @@ function TailTrackHeading({ kicker, title, description }) {
   );
 }
 
-function TailTrackLightbox({ image, labels, onClose, onPrevious, onNext }) {
+function TailTrackLightbox({ image, labels, onClose, onPrevious, onNext, modalRef }) {
   if (!image) return null;
 
   return (
-    <div className="tt-lightbox" role="dialog" aria-modal="true" aria-label={image.title} onClick={onClose}>
-      <button type="button" className="tt-lightbox-close" aria-label={labels.close} onClick={onClose}>
+    <div ref={modalRef} className="tt-lightbox" role="dialog" aria-modal="true" aria-label={image.title} tabIndex={-1} onClick={onClose}>
+      <button type="button" className="tt-lightbox-close" aria-label={labels.close} onClick={onClose} data-modal-initial-focus>
         <FaXmark />
       </button>
       <button type="button" className="tt-lightbox-nav" aria-label={labels.previous} onClick={onPrevious}>
@@ -60,6 +62,7 @@ export default function TailTrackProjectPage() {
   const navigate = useNavigate();
   const { i18n } = useTranslation();
   const pageRef = useRef(null);
+  const lightboxRef = useRef(null);
   const content = tailTrackProject[i18n.language?.startsWith('en') ? 'en' : 'pt'];
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
   const allImages = useMemo(
@@ -67,6 +70,9 @@ export default function TailTrackProjectPage() {
     [content],
   );
   const selectedImage = selectedImageIndex === null ? null : allImages[selectedImageIndex];
+  const closeLightbox = () => setSelectedImageIndex(null);
+
+  useModalFocus(Boolean(selectedImage), lightboxRef, closeLightbox);
 
   useEffect(() => {
     pageRef.current?.scrollTo({ top: 0 });
@@ -105,11 +111,11 @@ export default function TailTrackProjectPage() {
   };
 
   const scrollToOverview = () => {
-    pageRef.current?.querySelector('#tailtrack-overview')?.scrollIntoView({ behavior: 'smooth' });
+    pageRef.current?.querySelector('#tailtrack-overview')?.scrollIntoView({ behavior: getMotionSafeScrollBehavior() });
   };
 
   return (
-    <main className="tailtrack-page" ref={pageRef}>
+    <div className="tailtrack-page" ref={pageRef}>
       <section className="tt-hero">
         <div className="tt-hero-paw tt-paw-one"><FaPaw /></div>
         <div className="tt-hero-paw tt-paw-two"><FaPaw /></div>
@@ -260,10 +266,11 @@ export default function TailTrackProjectPage() {
       <TailTrackLightbox
         image={selectedImage}
         labels={content.modal}
-        onClose={() => setSelectedImageIndex(null)}
+        onClose={closeLightbox}
         onPrevious={moveImage(-1)}
         onNext={moveImage(1)}
+        modalRef={lightboxRef}
       />
-    </main>
+    </div>
   );
 }

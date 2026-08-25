@@ -6,6 +6,7 @@ const MatrixBackground = () => {
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         const setCanvasDimensions = () => {
             canvas.width = window.innerWidth;
@@ -55,7 +56,8 @@ const MatrixBackground = () => {
             }
         };
 
-        const interval = setInterval(draw, 33); // Aprox ~30 FPS
+        draw();
+        const interval = reduceMotion ? null : setInterval(draw, 50);
 
         const handleResize = () => {
             setCanvasDimensions();
@@ -69,7 +71,7 @@ const MatrixBackground = () => {
         window.addEventListener('resize', handleResize);
 
         return () => {
-            clearInterval(interval);
+            if (interval) clearInterval(interval);
             window.removeEventListener('resize', handleResize);
         };
     }, []);

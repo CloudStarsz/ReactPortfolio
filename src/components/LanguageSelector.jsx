@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { Flex, Button } from '@chakra-ui/react';
 
 export default function LanguageSelector() {
   const { i18n } = useTranslation();
@@ -9,31 +8,23 @@ export default function LanguageSelector() {
   };
 
   return (
-    <Flex gap={2} ml={4} mr={4} align="center">
-      <Button
-        size="sm"
-        variant={i18n.language === 'pt' ? 'solid' : 'ghost'}
-        color={i18n.language === 'pt' ? 'white' : 'gray.400'}
-        bg={i18n.language === 'pt' ? 'rgba(90, 3, 252, 0.5)' : 'transparent'}
-        _hover={{ bg: 'rgba(90, 3, 252, 0.3)', color: 'white' }}
-        borderRadius="full"
-        px={3}
+    <div className="language-selector" aria-label="Language selector">
+      <button
+        type="button"
+        className={i18n.language === 'pt' ? 'is-active' : ''}
+        aria-pressed={i18n.language === 'pt'}
         onClick={() => handleLanguageChange('pt')}
       >
         PT
-      </Button>
-      <Button
-        size="sm"
-        variant={i18n.language === 'en' ? 'solid' : 'ghost'}
-        color={i18n.language === 'en' ? 'white' : 'gray.400'}
-        bg={i18n.language === 'en' ? 'rgba(90, 3, 252, 0.5)' : 'transparent'}
-        _hover={{ bg: 'rgba(90, 3, 252, 0.3)', color: 'white' }}
-        borderRadius="full"
-        px={3}
+      </button>
+      <button
+        type="button"
+        className={i18n.language === 'en' ? 'is-active' : ''}
+        aria-pressed={i18n.language === 'en'}
         onClick={() => handleLanguageChange('en')}
       >
         EN
-      </Button>
-    </Flex>
+      </button>
+    </div>
   );
 }

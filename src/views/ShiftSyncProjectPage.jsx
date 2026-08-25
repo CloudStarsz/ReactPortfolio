@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowDown, FaArrowLeft, FaChevronLeft, FaChevronRight, FaXmark } from 'react-icons/fa6';
 import { shiftSyncProject } from '../data/shiftSyncProject.js';
+import useModalFocus from '../components/useModalFocus.js';
+import { getMotionSafeScrollBehavior } from '../utils/motion.js';
 import './ShiftSyncProjectPage.scss';
 
 const shiftSyncImages = import.meta.glob('../images/shiftsync/*.png', {
@@ -22,12 +24,12 @@ function SectionHeading({ kicker, title, description }) {
   );
 }
 
-function ImageModal({ image, onClose, onPrevious, onNext, labels }) {
+function ImageModal({ image, onClose, onPrevious, onNext, labels, modalRef }) {
   if (!image) return null;
 
   return (
-    <div className="ss-lightbox" role="dialog" aria-modal="true" aria-label={image.title} onClick={onClose}>
-      <button className="ss-lightbox-close" type="button" onClick={onClose} aria-label={labels.close}>
+    <div ref={modalRef} className="ss-lightbox" role="dialog" aria-modal="true" aria-label={image.title} tabIndex={-1} onClick={onClose}>
+      <button className="ss-lightbox-close" type="button" onClick={onClose} aria-label={labels.close} data-modal-initial-focus>
         <FaXmark />
       </button>
       <button className="ss-lightbox-nav ss-lightbox-prev" type="button" onClick={onPrevious} aria-label={labels.previous}>
@@ -51,6 +53,7 @@ export default function ShiftSyncProjectPage() {
   const navigate = useNavigate();
   const { i18n } = useTranslation();
   const pageRef = useRef(null);
+  const lightboxRef = useRef(null);
   const content = shiftSyncProject[i18n.language?.startsWith('en') ? 'en' : 'pt'];
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
   const allImages = useMemo(
@@ -58,6 +61,9 @@ export default function ShiftSyncProjectPage() {
     [content],
   );
   const selectedImage = selectedImageIndex === null ? null : allImages[selectedImageIndex];
+  const closeLightbox = () => setSelectedImageIndex(null);
+
+  useModalFocus(Boolean(selectedImage), lightboxRef, closeLightbox);
 
   useEffect(() => {
     pageRef.current?.scrollTo({ top: 0 });
@@ -98,11 +104,11 @@ export default function ShiftSyncProjectPage() {
   };
 
   const scrollToContent = () => {
-    pageRef.current?.querySelector('#shiftsync-overview')?.scrollIntoView({ behavior: 'smooth' });
+    pageRef.current?.querySelector('#shiftsync-overview')?.scrollIntoView({ behavior: getMotionSafeScrollBehavior() });
   };
 
   return (
-    <main className="shiftsync-page" ref={pageRef}>
+    <div className="shiftsync-page" ref={pageRef}>
       <section className="ss-hero">
         <div className="ss-hero-orb ss-hero-orb-one" />
         <div className="ss-hero-orb ss-hero-orb-two" />
@@ -285,11 +291,12 @@ export default function ShiftSyncProjectPage() {
 
       <ImageModal
         image={selectedImage}
-        onClose={() => setSelectedImageIndex(null)}
+        onClose={closeLightbox}
         onPrevious={moveImage(-1)}
         onNext={moveImage(1)}
         labels={content.modal}
+        modalRef={lightboxRef}
       />
-    </main>
+    </div>
   );
 }

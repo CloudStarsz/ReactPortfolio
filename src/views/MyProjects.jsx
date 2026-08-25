@@ -1,9 +1,9 @@
-import { Box, Heading } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
 
 const localImages = import.meta.glob('../images/*.{png,jpg,jpeg,svg}', { eager: true, import: 'default' });
 const shiftSyncImages = import.meta.glob('../images/shiftsync/*.png', { eager: true, import: 'default' });
@@ -16,6 +16,15 @@ import 'swiper/css/effect-coverflow';
 function MyProjects() {
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();
+    const [reduceMotion, setReduceMotion] = useState(false);
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const updatePreference = () => setReduceMotion(mediaQuery.matches);
+        updatePreference();
+        mediaQuery.addEventListener('change', updatePreference);
+        return () => mediaQuery.removeEventListener('change', updatePreference);
+    }, []);
     
     // Fallback in case projects list is undefined
     const projectsList = t('projects.list', { returnObjects: true }) || [];
@@ -53,8 +62,8 @@ function MyProjects() {
     };
 
     return (
-        <div className="carousel-container" style={{ width: '100%', margin: '0 auto', position: 'relative' }}>
-            <h1 style={{ textAlign: 'center', marginBottom: "30px", fontWeight: '100', fontStyle: 'italic', fontSize: 'clamp(2.5rem, 6vw, 72px)' }}>{t('projects.title')}</h1>
+        <div className="carousel-container">
+            <h1 className="section-title">{t('projects.title')}</h1>
 
             <Swiper
                 effect={'coverflow'}
@@ -62,58 +71,44 @@ function MyProjects() {
                 centeredSlides={true}
                 slidesPerView={'auto'}
                 coverflowEffect={{
-                    rotate: 20,
+                    rotate: 5,
                     stretch: 0,
-                    depth: 100,
+                    depth: 70,
                     modifier: 1,
                     slideShadows: true,
                 }}
                 loop={true}
-                autoplay={{
+                autoplay={reduceMotion ? false : {
                     delay: 3500,
                     disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
                 }}
                 navigation={true}
                 pagination={{ clickable: true, dynamicBullets: true }}
                 modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
-                style={{ width: '100%', paddingBottom: '60px', paddingTop: '20px' }}
                 className="my-projects-swiper"
             >
                 {displayProjects.map((project, index) => (
-                    <SwiperSlide key={project.id || index} style={{ width: 'min(85%, 800px)' }} onClick={() => { if(!project.id?.startsWith('embreve')) navigate(`/project/${project.id}`) }}>
-                        <div style={{
-                            position: 'relative',
-                            width: '100%',
-                            aspectRatio: '16 / 9',
-                            borderRadius: '20px',
-                            overflow: 'hidden',
-                            border: project.id === 'shiftsync' ? '2px solid #ecb144' : '2px solid transparent',
-                            boxShadow: project.id === 'shiftsync'
-                                ? '0 10px 38px rgba(236, 177, 68, 0.38)'
-                                : '0 10px 30px rgba(0,0,0,0.5)',
-                            cursor: !project.id?.startsWith('embreve') ? 'pointer' : 'default'
-                        }}>
+                    <SwiperSlide
+                        key={project.id || index}
+                        className="project-slide"
+                        role={!project.id?.startsWith('embreve') ? 'button' : undefined}
+                        tabIndex={!project.id?.startsWith('embreve') ? 0 : -1}
+                        aria-label={!project.id?.startsWith('embreve') ? project.name : undefined}
+                        onClick={() => { if(!project.id?.startsWith('embreve')) navigate(`/project/${project.id}`) }}
+                        onKeyDown={(event) => {
+                            if (!project.id?.startsWith('embreve') && (event.key === 'Enter' || event.key === ' ')) {
+                                event.preventDefault();
+                                navigate(`/project/${project.id}`);
+                            }
+                        }}
+                    >
+                        <div className={`project-card${project.id === 'shiftsync' ? ' is-featured' : ''}${project.id?.startsWith('embreve') ? ' is-placeholder' : ''}`}>
                             {project.id === 'shiftsync' && (
                                 <div
                                     title={i18n.language === 'pt' ? 'Projeto destaque' : 'Featured project'}
                                     aria-label={i18n.language === 'pt' ? 'Projeto destaque' : 'Featured project'}
-                                    style={{
-                                        position: 'absolute',
-                                        top: '16px',
-                                        right: '16px',
-                                        zIndex: 2,
-                                        width: '44px',
-                                        height: '44px',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        border: '1px solid rgba(255, 235, 166, 0.75)',
-                                        borderRadius: '50%',
-                                        color: '#ffd76a',
-                                        background: 'rgba(36, 24, 4, 0.84)',
-                                        boxShadow: '0 6px 22px rgba(236, 177, 68, 0.42)',
-                                        backdropFilter: 'blur(10px)'
-                                    }}
+                                    className="featured-badge"
                                 >
                                     <FaStar size={20} />
                                 </div>
@@ -121,46 +116,14 @@ function MyProjects() {
                             <img
                                 src={getThumbnail(project)}
                                 alt={project.name}
-                                style={{
-                                    width: '100%',
-                                    height: '100%',
-                                    display: 'block',
-                                    objectFit: 'cover',
-                                    objectPosition: 'center top'
-                                }}
+                                loading="lazy"
                             />
-                            <div style={{
-                                position: 'absolute',
-                                bottom: 0,
-                                left: 0,
-                                width: '100%',
-                                padding: '30px 20px 20px',
-                                background: 'linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.6), transparent)',
-                                color: 'white',
-                                textAlign: 'left',
-                                boxSizing: 'border-box'
-                            }}>
-                                <h3 style={{
-                                    maxWidth: '100%',
-                                    overflow: 'hidden',
-                                    margin: '0 0 5px 0',
-                                    fontSize: '1.5rem',
-                                    fontWeight: 'bold',
-                                    textOverflow: 'ellipsis',
-                                    whiteSpace: 'nowrap'
-                                }}>
+                            <div className="project-card-copy">
+                                <h3>
                                     {project.name}
                                 </h3>
                                 {project.shortDescription && (
-                                    <p style={{
-                                        maxWidth: '100%',
-                                        overflow: 'hidden',
-                                        margin: 0,
-                                        color: '#e1d8ed',
-                                        fontSize: '1rem',
-                                        textOverflow: 'ellipsis',
-                                        whiteSpace: 'nowrap'
-                                    }}>
+                                    <p>
                                         {project.shortDescription}
                                     </p>
                                 )}

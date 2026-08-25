@@ -1,9 +1,10 @@
 import { Box, Heading, Text, VStack, Badge, Flex, Image, SimpleGrid } from '@chakra-ui/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Button from '../components/Button.jsx';
 import { FaArrowLeft } from 'react-icons/fa';
+import useModalFocus from '../components/useModalFocus.js';
 
 const localImages = import.meta.glob('../images/*.{png,jpg,jpeg,svg}', { eager: true, import: 'default' });
 
@@ -12,6 +13,10 @@ export default function ProjectDetailsPage() {
     const navigate = useNavigate();
     const { t, i18n } = useTranslation();
     const [selectedImage, setSelectedImage] = useState(null);
+    const lightboxRef = useRef(null);
+    const closeLightbox = () => setSelectedImage(null);
+
+    useModalFocus(Boolean(selectedImage), lightboxRef, closeLightbox);
 
     useEffect(() => {
         const header = document.querySelector('.site-header');
@@ -83,12 +88,18 @@ export default function ProjectDetailsPage() {
                                 const path = `../images/${imgName}`;
                                 const src = localImages[path] || `https://placehold.co/1120x630/230f40/e1d8ed?text=${encodeURIComponent(imgName)}`;
                                 return (
-                                    <Box 
+                                    <Box
+                                        as="button"
+                                        type="button"
                                         key={index} 
                                         borderRadius="xl" 
                                         overflow="hidden" 
                                         boxShadow="0 10px 30px rgba(0,0,0,0.5)"
                                         cursor="zoom-in"
+                                        p={0}
+                                        border={0}
+                                        bg="transparent"
+                                        textAlign="left"
                                         onClick={() => setSelectedImage(src)}
                                         transition="transform 0.2s"
                                         _hover={{ transform: "scale(1.02)" }}
@@ -115,7 +126,12 @@ export default function ProjectDetailsPage() {
             </VStack>
 
             {selectedImage && (
-                <Box 
+                <Box
+                    ref={lightboxRef}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label={i18n.language === 'pt' ? 'Visualização ampliada' : 'Expanded image view'}
+                    tabIndex={-1}
                     position="fixed" 
                     top={0} 
                     left={0} 
@@ -127,10 +143,13 @@ export default function ProjectDetailsPage() {
                     alignItems="center" 
                     justifyContent="center"
                     backdropFilter="blur(10px)"
-                    onClick={() => setSelectedImage(null)}
+                    onClick={closeLightbox}
                 >
                     <Box position="relative" maxW="95vw" maxH="95vh" onClick={(e) => e.stopPropagation()}>
-                        <Box 
+                        <Box
+                            as="button"
+                            type="button"
+                            data-modal-initial-focus
                             position="absolute" 
                             top="-15px" 
                             right="-15px" 
@@ -142,11 +161,13 @@ export default function ProjectDetailsPage() {
                             alignItems="center" 
                             justifyContent="center" 
                             cursor="pointer"
-                            onClick={() => setSelectedImage(null)}
+                            aria-label={i18n.language === 'pt' ? 'Fechar imagem' : 'Close image'}
+                            border={0}
+                            onClick={closeLightbox}
                             _hover={{ bg: "rgba(0,0,0,0.8)" }}
                             zIndex={10000}
                         >
-                            X
+                            ×
                         </Box>
                         <Image 
                             src={selectedImage} 

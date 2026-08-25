@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next"
 
 const TechCard = ({ icon, name, color, favorite }) => {
     return (
-        <Box position="relative">
+        <Box position="relative" className="tech-card-wrap">
             {/* Glow de fundo */}
             <Box
                 position="absolute"
@@ -26,8 +26,9 @@ const TechCard = ({ icon, name, color, favorite }) => {
                 position="relative"
                 zIndex={1}
                 direction="column"
-                w={{ base: "100px", sm: "120px", md: "150px", lg: "160px" }}
-                h={{ base: "100px", sm: "120px", md: "150px", lg: "160px" }}
+                w="100%"
+                h="100%"
+                aspectRatio="1"
                 bg="rgba(255, 255, 255, 0.03)"
                 backdropFilter="blur(10px)"
                 borderRadius="2xl"
@@ -37,10 +38,10 @@ const TechCard = ({ icon, name, color, favorite }) => {
                 alignItems="center"
                 justifyContent="center"
                 transition="all 0.3s"
-                cursor="pointer"
+                cursor="default"
                 role="group"
                 _hover={{
-                    transform: "translateY(-5px)",
+                    transform: "translateY(-3px)",
                     bg: "rgba(255, 255, 255, 0.06)",
                     borderColor: favorite ? "rgba(236, 177, 68, 1)" : "rgba(255, 255, 255, 0.2)",
                     boxShadow: favorite ? "0 10px 40px rgba(236, 177, 68, 0.3)" : "0 10px 40px rgba(90, 3, 252, 0.2)",
@@ -84,17 +85,18 @@ export default function TechPage() {
     ]
 
     return (
-        <Box w="100%">
-            <h1 style={{ textAlign: 'center', marginBottom: "30px", fontWeight: '100', fontStyle: 'italic', fontSize: 'clamp(2.5rem, 6vw, 72px)' }}>
+        <Box w="100%" className="tech-page">
+            <h1 className="section-title">
                 {t('tech.title')}
             </h1>
             <Flex
                 wrap="wrap"
                 justify="center"
-                gap={{ base: "15px", md: "40px" }}
-                maxW={{ base: "95vw", md: "80vw" }}
+                className="tech-grid"
+                gap={{ base: "10px", md: "16px" }}
+                maxW="1120px"
                 mx="auto"
-                py={10}
+                py={{ base: 5, md: 8 }}
             >
                 {techs.map((tech) => (
                     <TechCard key={tech.name} {...tech} />

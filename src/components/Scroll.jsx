@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { getMotionSafeScrollBehavior } from '../utils/motion.js';
 
 function Scroll() {
   const [isEnd, setIsEnd] = useState(false);
@@ -9,7 +10,7 @@ function Scroll() {
     const vh = window.innerHeight;
     const container = document.querySelector('.snap-container');
     if (container) {
-      container.scrollBy({ top: vh, behavior: 'smooth' });
+      container.scrollBy({ top: vh, behavior: getMotionSafeScrollBehavior() });
     }
   };
 
@@ -35,10 +36,12 @@ function Scroll() {
 
   return (
     <div className={`fixed-footer-arrow ${isEnd ? 'is-ended' : ''}`}>
-      <div
+      <button
+        type="button"
         className="arrow-icon"
         onClick={handleScrollNext}
-        style={{ cursor: isEnd ? 'default' : 'pointer' }}
+        disabled={isEnd}
+        aria-label="Ir para a próxima seção"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +56,7 @@ function Scroll() {
         >
           <path d="M6 9l6 6 6-6" />
         </svg>
-      </div>
+      </button>
     </div>
   );
 }

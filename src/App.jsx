@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import './styles/App.scss'
 import FirstPage from './views/FirstPage.jsx'
 import Navigation from './components/Navigation.jsx'
@@ -19,6 +18,9 @@ import TailTrackProjectPage from './views/TailTrackProjectPage.jsx';
 import MatrixBackground from './components/MatrixBackground.jsx';
 import { useTranslation } from 'react-i18next';
 import LanguageSelector from './components/LanguageSelector.jsx';
+import { getMotionSafeScrollBehavior } from './utils/motion.js';
+
+const MotionPage = motion.div;
 
 // Novo componente para a página Home que encapsula o scroll
 function HomePage() {
@@ -53,7 +55,7 @@ function MainLayout() {
     if (path === '/') {
         if (location.pathname === '/') {
             // Se já estiver na Home, faça o scroll suave para o topo
-            document.querySelector('.snap-container')?.scrollTo({ top: 0, behavior: 'smooth' });
+            document.querySelector('.snap-container')?.scrollTo({ top: 0, behavior: getMotionSafeScrollBehavior() });
         } else {
             // Vai pra Home normalmente
             navigate(path);
@@ -67,7 +69,11 @@ function MainLayout() {
     <>
       <MatrixBackground />
       <header className="site-header">
-        <div className="logo" onClick={() => handleNavigation('/')}>{t('header.logo')}</div>
+        <div className="header-inner">
+        <button className="logo" type="button" onClick={() => handleNavigation('/')} aria-label={t('header.nav_home')}>
+          <span className="logo-mark" aria-hidden="true">C</span>
+          <span>{t('header.logo')}</span>
+        </button>
         <Navigation 
           items={[
             { name: t('header.nav_home'), path: '/' }, 
@@ -77,25 +83,26 @@ function MainLayout() {
           ]} 
           onNavigate={handleNavigation}
         />
-        <Flex align="center">
+        <Flex className="header-tools" align="center">
           <LanguageSelector />
           <div className="header-action">
             <Button texto={t('header.btn_budget')} onClick={() => handleNavigation('/orcamento')} />
           </div>
         </Flex>
+        </div>
       </header>
 
       {/* Roteamento das páginas independentes */}
-      <Box h="100%" w="100%" position="relative" zIndex={1} overflow="hidden">
+      <Box as="main" h="100%" w="100%" position="relative" zIndex={1} overflow="hidden">
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
-            <Route path="/resume" element={<PageWrapper><Box pt="100px" h="100dvh"><ResumePage /></Box></PageWrapper>} />
-            <Route path="/contact" element={<PageWrapper><Box pt="100px" h="100dvh"><ContactPage /></Box></PageWrapper>} />
-            <Route path="/orcamento" element={<PageWrapper><Box pt="100px" h="100dvh"><OrcamentoPage /></Box></PageWrapper>} />
+            <Route path="/resume" element={<PageWrapper><Box className="route-page"><ResumePage /></Box></PageWrapper>} />
+            <Route path="/contact" element={<PageWrapper><Box className="route-page"><ContactPage /></Box></PageWrapper>} />
+            <Route path="/orcamento" element={<PageWrapper><Box className="route-page"><OrcamentoPage /></Box></PageWrapper>} />
             <Route path="/project/shiftsync" element={<PageWrapper><ShiftSyncProjectPage /></PageWrapper>} />
             <Route path="/project/tailtrack" element={<PageWrapper><TailTrackProjectPage /></PageWrapper>} />
-            <Route path="/project/:id" element={<PageWrapper><Box pt="100px" h="100dvh"><ProjectDetailsPage /></Box></PageWrapper>} />
+            <Route path="/project/:id" element={<PageWrapper><Box className="route-page"><ProjectDetailsPage /></Box></PageWrapper>} />
           </Routes>
         </AnimatePresence>
       </Box>
@@ -105,16 +112,18 @@ function MainLayout() {
 
 // Wrapper para as transições de página
 function PageWrapper({ children }) {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
+    <MotionPage
+      initial={{ opacity: 0, y: reduceMotion ? 0 : 14 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
+      exit={{ opacity: 0, y: reduceMotion ? 0 : -14 }}
+      transition={{ duration: reduceMotion ? 0 : 0.3, ease: "easeOut" }}
       style={{ width: "100%", height: "100%" }}
     >
       {children}
-    </motion.div>
+    </MotionPage>
   );
 }
 
