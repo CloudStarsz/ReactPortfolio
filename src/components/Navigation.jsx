@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 
-function Navigation({ items, onNavigate }) {
+function Navigation({ items, onNavigate, currentPath }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = (path) => {
@@ -26,7 +26,12 @@ function Navigation({ items, onNavigate }) {
       <ul id="main-navigation-menu" className={isOpen ? "nav-menu active" : "nav-menu"}>
         {items.map((item) => (
           <li key={item.path} className={`nav-item ${item.mobileOnly ? "mobile-only" : ""}`}>
-            <button type="button" onClick={() => handleClick(item.path)}>
+            <button
+              type="button"
+              className={currentPath === item.path ? 'is-current' : ''}
+              aria-current={currentPath === item.path ? 'page' : undefined}
+              onClick={() => handleClick(item.path)}
+            >
               {item.name}
             </button>
           </li>

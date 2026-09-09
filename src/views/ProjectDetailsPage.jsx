@@ -57,21 +57,21 @@ export default function ProjectDetailsPage() {
             </Box>
             
             <VStack align="start" spacing={6}>
-                <Heading as="h1" fontSize={["3xl", "5xl"]} fontWeight="800" fontStyle="italic">
+                <Heading as="h1" fontSize={["3xl", "5xl"]} fontWeight="700" letterSpacing="-0.04em">
                     {project.name}
                 </Heading>
                 
-                <Text fontSize={["lg", "xl"]} color="#b9aecf">
+                <Text fontSize={["lg", "xl"]} color="#9fb0b5">
                     {project.description}
                 </Text>
                 
                 <Box>
-                    <Heading as="h3" size="md" mb={3} color="#e1d8ed">
+                    <Heading as="h3" size="md" mb={3} color="#dce8eb">
                         {i18n.language === 'pt' ? "Tecnologias Usadas:" : "Technologies Used:"}
                     </Heading>
                     <Flex wrap="wrap" gap={2}>
                         {project.technologies.map((tech, index) => (
-                            <Badge key={index} colorScheme="purple" px={3} py={1} borderRadius="md" fontSize="sm">
+                            <Badge key={index} colorPalette="cyan" variant="outline" px={3} py={1} borderRadius="sm" fontSize="sm">
                                 {tech}
                             </Badge>
                         ))}
@@ -79,7 +79,7 @@ export default function ProjectDetailsPage() {
                 </Box>
                 
                 <Box w="100%" pt={8}>
-                    <Heading as="h3" size="lg" mb={6} color="#e1d8ed">
+                    <Heading as="h3" size="lg" mb={6} color="#dce8eb">
                         {i18n.language === 'pt' ? "Galeria" : "Gallery"}
                     </Heading>
                     {project.gallery && project.gallery.length > 0 ? (
@@ -92,7 +92,7 @@ export default function ProjectDetailsPage() {
                                         as="button"
                                         type="button"
                                         key={index} 
-                                        borderRadius="xl" 
+                                        borderRadius="0"
                                         overflow="hidden" 
                                         boxShadow="0 10px 30px rgba(0,0,0,0.5)"
                                         cursor="zoom-in"
@@ -117,7 +117,7 @@ export default function ProjectDetailsPage() {
                             })}
                         </SimpleGrid>
                     ) : (
-                        <Text color="#b9aecf">
+                        <Text color="#9fb0b5">
                             {i18n.language === 'pt' ? "Sem imagens registradas." : "No images recorded."}
                         </Text>
                     )}

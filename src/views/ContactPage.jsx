@@ -15,10 +15,9 @@ export default function ContactPage() {
                     {/* LinkedIn */}
                     <Link className="contact-card-link" href="https://www.linkedin.com/in/raonirafimoraes/" isExternal _hover={{ textDecoration: 'none' }} w={{ base: "100%", md: "auto" }}>
                         <Box position="relative" w="100%">
-                            <Box position="absolute" top="-5px" left="-5px" right="-5px" bottom="-5px" bg="linear-gradient(to right, #0A66C2, #4db3ff)" borderRadius="2xl" filter="blur(15px)" opacity={{ base: 0.15, md: 0 }} transition="opacity 0.3s" _groupHover={{ opacity: 0.4 }} zIndex={0} />
-                            <Flex position="relative" zIndex={1} direction="column" align="center" bg="rgba(255, 255, 255, 0.03)" backdropFilter="blur(10px)" border="1px solid rgba(255, 255, 255, 0.05)" borderRadius="2xl" p={{ base: 6, md: 8 }} boxShadow="0 8px 32px rgba(0, 0, 0, 0.1)" transition="all 0.3s" _hover={{ transform: 'translateY(-5px)', bg: "rgba(255, 255, 255, 0.06)", borderColor: "rgba(10, 102, 194, 0.6)" }} role="group">
+                            <Flex className="contact-card" position="relative" direction="column" align="flex-start" bg="#0b1115" border="1px solid rgba(187, 223, 230, 0.12)" borderRadius="0" p={{ base: 6, md: 8 }} boxShadow="none" transition="border-color 0.2s ease, transform 0.2s ease" _hover={{ transform: 'translateY(-3px)', bg: "#0f181d", borderColor: "rgba(77, 228, 255, 0.6)" }} role="group">
                                 <Icon as={FaLinkedin} boxSize={{ base: 10, md: 12 }} color="#0A66C2" mb={4} />
-                                <Text fontWeight="bold" color="#e1d8ed" fontSize={{ base: "lg", md: "xl" }}>LinkedIn</Text>
+                                <Text fontWeight="bold" color="#dce8eb" fontSize={{ base: "lg", md: "xl" }}>LinkedIn</Text>
                                 <Text color="gray.400" fontSize={{ base: "xs", md: "sm" }}>{t('contact.linkedin_desc')}</Text>
                             </Flex>
                         </Box>
@@ -27,10 +26,9 @@ export default function ContactPage() {
                     {/* Email */}
                     <Link className="contact-card-link" href="mailto:contato.raonimoraes@gmail.com" isExternal _hover={{ textDecoration: 'none' }} w={{ base: "100%", md: "auto" }}>
                         <Box position="relative" w="100%">
-                            <Box position="absolute" top="-5px" left="-5px" right="-5px" bottom="-5px" bg="linear-gradient(to right, #5a03fc, #3f03ad)" borderRadius="2xl" filter="blur(15px)" opacity={{ base: 0.15, md: 0 }} transition="opacity 0.3s" _groupHover={{ opacity: 0.4 }} zIndex={0} />
-                            <Flex position="relative" zIndex={1} direction="column" align="center" bg="rgba(255, 255, 255, 0.03)" backdropFilter="blur(10px)" border="1px solid rgba(255, 255, 255, 0.05)" borderRadius="2xl" p={{ base: 6, md: 8 }} boxShadow="0 8px 32px rgba(0, 0, 0, 0.1)" transition="all 0.3s" _hover={{ transform: 'translateY(-5px)', bg: "rgba(255, 255, 255, 0.06)", borderColor: "rgba(90, 3, 252, 0.6)" }} role="group">
-                                <Icon as={FaEnvelope} boxSize={{ base: 10, md: 12 }} color="#90cdf4" mb={4} />
-                                <Text fontWeight="bold" color="#e1d8ed" fontSize={{ base: "lg", md: "xl" }}>E-mail</Text>
+                            <Flex className="contact-card" position="relative" direction="column" align="flex-start" bg="#0b1115" border="1px solid rgba(187, 223, 230, 0.12)" borderRadius="0" p={{ base: 6, md: 8 }} boxShadow="none" transition="border-color 0.2s ease, transform 0.2s ease" _hover={{ transform: 'translateY(-3px)', bg: "#0f181d", borderColor: "rgba(77, 228, 255, 0.6)" }} role="group">
+                                <Icon as={FaEnvelope} boxSize={{ base: 10, md: 12 }} color="#4de4ff" mb={4} />
+                                <Text fontWeight="bold" color="#dce8eb" fontSize={{ base: "lg", md: "xl" }}>E-mail</Text>
                                 <Text color="gray.400" fontSize={{ base: "xs", md: "sm" }}>{t('contact.email_desc')}</Text>
                             </Flex>
                         </Box>

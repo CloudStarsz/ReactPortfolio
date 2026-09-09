@@ -71,8 +71,11 @@ function MainLayout() {
       <header className="site-header">
         <div className="header-inner">
         <button className="logo" type="button" onClick={() => handleNavigation('/')} aria-label={t('header.nav_home')}>
-          <span className="logo-mark" aria-hidden="true">C</span>
-          <span>{t('header.logo')}</span>
+          <span className="logo-mark" aria-hidden="true">RM</span>
+          <span className="logo-copy">
+            <strong>Raoni Moraes</strong>
+            <small>{t('header.logo')}</small>
+          </span>
         </button>
         <Navigation 
           items={[
@@ -82,6 +85,7 @@ function MainLayout() {
             { name: t('header.btn_budget'), path: '/orcamento', mobileOnly: true }
           ]} 
           onNavigate={handleNavigation}
+          currentPath={location.pathname}
         />
         <Flex className="header-tools" align="center">
           <LanguageSelector />

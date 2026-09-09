@@ -3,7 +3,7 @@ import { Navigation, Pagination, Autoplay, EffectCoverflow } from 'swiper/module
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const localImages = import.meta.glob('../images/*.{png,jpg,jpeg,svg}', { eager: true, import: 'default' });
 const shiftSyncImages = import.meta.glob('../images/shiftsync/*.png', { eager: true, import: 'default' });
@@ -13,14 +13,37 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
 
+const AUTOPLAY_SETTINGS = {
+    delay: 3500,
+    disableOnInteraction: false,
+    pauseOnMouseEnter: true,
+};
+
 function MyProjects() {
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();
-    const [reduceMotion, setReduceMotion] = useState(false);
+    const swiperRef = useRef(null);
+    const [reduceMotion, setReduceMotion] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
     useEffect(() => {
         const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-        const updatePreference = () => setReduceMotion(mediaQuery.matches);
+        const updatePreference = () => {
+            const shouldReduceMotion = mediaQuery.matches;
+            const swiper = swiperRef.current;
+
+            setReduceMotion(shouldReduceMotion);
+
+            if (!swiper?.autoplay) return;
+
+            if (shouldReduceMotion) {
+                swiper.autoplay.stop();
+                return;
+            }
+
+            swiper.params.autoplay = { ...AUTOPLAY_SETTINGS };
+            swiper.autoplay.start();
+        };
+
         updatePreference();
         mediaQuery.addEventListener('change', updatePreference);
         return () => mediaQuery.removeEventListener('change', updatePreference);
@@ -51,14 +74,14 @@ function MyProjects() {
             return localImages['../images/Screenshot_4.png'];
         }
         if (!project.gallery || project.gallery.length === 0) {
-            return `https://placehold.co/1120x630/230f40/e1d8ed?text=${encodeURIComponent(project.name)}`;
+            return null;
         }
         const imgName = project.gallery[0];
         const path = `../images/${imgName}`;
         if (localImages[path]) {
             return localImages[path];
         }
-        return `https://placehold.co/1120x630/230f40/e1d8ed?text=${encodeURIComponent(imgName)}`;
+        return null;
     };
 
     return (
@@ -78,10 +101,10 @@ function MyProjects() {
                     slideShadows: true,
                 }}
                 loop={true}
-                autoplay={reduceMotion ? false : {
-                    delay: 3500,
-                    disableOnInteraction: false,
-                    pauseOnMouseEnter: true,
+                autoplay={reduceMotion ? false : AUTOPLAY_SETTINGS}
+                onSwiper={(swiper) => {
+                    swiperRef.current = swiper;
+                    if (reduceMotion) swiper.autoplay?.stop();
                 }}
                 navigation={true}
                 pagination={{ clickable: true, dynamicBullets: true }}
@@ -113,12 +136,19 @@ function MyProjects() {
                                     <FaStar size={20} />
                                 </div>
                             )}
-                            <img
-                                src={getThumbnail(project)}
-                                alt={project.name}
-                                loading="lazy"
-                            />
+                            {getThumbnail(project) ? (
+                                <img
+                                    src={getThumbnail(project)}
+                                    alt={project.name}
+                                    loading="lazy"
+                                />
+                            ) : (
+                                <div className="project-placeholder-art" aria-hidden="true">
+                                    <span>{String(index + 1).padStart(2, '0')}</span>
+                                </div>
+                            )}
                             <div className="project-card-copy">
+                                <span className="project-index">PROJECT / {String(index + 1).padStart(2, '0')}</span>
                                 <h3>
                                     {project.name}
                                 </h3>

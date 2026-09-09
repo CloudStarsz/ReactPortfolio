@@ -1,64 +1,49 @@
-import { Box, VStack, Text, Heading, Stack } from "@chakra-ui/react";
+import { Box, Text, Heading } from "@chakra-ui/react";
 import Button from '../components/Button.jsx';
 import { useTranslation } from 'react-i18next';
 import { FaGithub } from 'react-icons/fa';
 
 export default function FirstPage() {
   const { t } = useTranslation();
+  const [firstName, ...lastName] = t('home.name').split(' ');
+
   return (
-    <Box
-      className='home'
-      h="100%"
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-    >
-      <VStack className="home-content" spacing={6} textAlign="center" px={4}>
-        <Text
-          fontSize="clamp(1.15rem, 2.2vw, 1.75rem)"
-          fontWeight="100"
-          lineHeight="1.2"
-          className='presentation-intro'
-        >
-          {t('home.hello')}
-        </Text>
+    <Box className="home" h="100%" display="flex" alignItems="center">
+      <div className="home-content">
+        <aside className="hero-index" aria-hidden="true">
+          <span>01</span>
+          <i />
+          <span>04</span>
+        </aside>
 
-        <Heading
-          as="h1"
-          fontSize="clamp(3.25rem, 9vw, 7.5rem)"
-          fontWeight="800"
-          fontStyle="italic"
-          lineHeight="1"
-          className='presentation-name'
-          pb={2}
-        >
-          {t('home.name')}
-        </Heading>
-
-        <Stack
-          direction={{ base: "column", md: "row" }}
-          spacing={{ base: 2, md: 8 }}
-          className='presentation-roles'
-          color="#b9aecf"
-          fontSize={{ base: "lg", md: "2xl" }}
-          fontWeight="300"
-        >
-          <Text className='role'>{t('home.role1')}</Text>
-          <Text display={{ base: "none", md: "block" }}>•</Text>
-          <Text className='role'>{t('home.role2')}</Text>
-          <Text display={{ base: "none", md: "block" }}>•</Text>
-          <Text className='role'>{t('home.role3')}</Text>
-        </Stack>
-
-        <Box pt={{ base: 5, md: 8 }}>
-          <Button 
-            texto={t('home.btn_work')} 
-            id='visit_my_work-btn' 
+        <div className="hero-copy">
+          <Text className="presentation-intro">
+            <span aria-hidden="true">&gt;_</span> {t('home.hello')}
+          </Text>
+          <Heading as="h1" className="presentation-name">
+            <span>{firstName}</span>
+            <span>{lastName.join(' ')}</span>
+          </Heading>
+          <div className="presentation-roles">
+            <Text className="role">{t('home.role1')}</Text>
+            <Text className="role">{t('home.role2')}</Text>
+            <Text className="role">{t('home.role3')}</Text>
+          </div>
+          <Box className="hero-action">
+          <Button
+            texto={t('home.btn_work')}
+            id="visit_my_work-btn"
             leftIcon={<FaGithub />}
             onClick={() => window.open('https://github.com/CloudStarsz', '_blank', 'noopener,noreferrer')}
           />
-        </Box>
-      </VStack>
+          </Box>
+        </div>
+
+        <aside className="hero-note">
+          <span>FULL-STACK / SP</span>
+          <p>.NET / React<br />Web / Mobile</p>
+        </aside>
+      </div>
     </Box>
   );
 }

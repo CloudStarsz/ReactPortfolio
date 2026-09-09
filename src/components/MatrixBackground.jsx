@@ -15,8 +15,8 @@ const MatrixBackground = () => {
 
         setCanvasDimensions();
 
-        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレゲゼデベペオォコソトノホモヨョロゴゾドボポヴッン';
-        const fontSize = 16;
+        const letters = '01{}[]<>/\\;:._+-=ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const fontSize = 18;
         let columns = canvas.width / fontSize;
 
         let drops = [];
@@ -31,20 +31,18 @@ const MatrixBackground = () => {
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.globalCompositeOperation = 'source-over';
 
-            // Cor das letras inspirada no seu tema (#5a03fc e #a621ff)
-            ctx.fillStyle = '#a621ff';
+            ctx.fillStyle = '#4de4ff';
             ctx.font = fontSize + 'px monospace';
 
             for (let i = 0; i < drops.length; i++) {
                 const text = letters.charAt(Math.floor(Math.random() * letters.length));
 
-                // Algumas letras brilham diferente
-                if (Math.random() > 0.95) {
-                    ctx.fillStyle = '#ffffff'; // White flash
-                } else if (Math.random() > 0.8) {
-                    ctx.fillStyle = '#5a03fc';
+                if (Math.random() > 0.985) {
+                    ctx.fillStyle = '#dffbff';
+                } else if (Math.random() > 0.86) {
+                    ctx.fillStyle = '#168aa0';
                 } else {
-                    ctx.fillStyle = '#a621ff'; // Default
+                    ctx.fillStyle = '#4de4ff';
                 }
 
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
@@ -57,7 +55,7 @@ const MatrixBackground = () => {
         };
 
         draw();
-        const interval = reduceMotion ? null : setInterval(draw, 50);
+        const interval = reduceMotion ? null : setInterval(draw, 90);
 
         const handleResize = () => {
             setCanvasDimensions();
@@ -86,7 +84,7 @@ const MatrixBackground = () => {
                 width: '100%',
                 height: '100%',
                 zIndex: 0,
-                opacity: 0.25, // Baixa opacidade pra ser super elegante e não ofuscar o conteúdo lido
+                opacity: 0.075,
                 pointerEvents: 'none',
                 backgroundColor: 'transparent'
             }}

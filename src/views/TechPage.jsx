@@ -7,44 +7,28 @@ import { useTranslation } from "react-i18next"
 
 const TechCard = ({ icon, name, color, favorite }) => {
     return (
-        <Box position="relative" className="tech-card-wrap">
-            {/* Glow de fundo */}
-            <Box
-                position="absolute"
-                top="-2px" left="-2px" right="-2px" bottom="-2px"
-                bg={favorite ? "linear-gradient(to right, #ecb144, #e3c178)" : "linear-gradient(to right, #5a03fc, #8247e6)"}
-                borderRadius="2xl"
-                filter={{ base: "blur(10px)", md: "blur(15px)" }}
-                opacity={{ base: favorite ? 0.3 : 0.1, md: favorite ? 0.4 : 0.05 }}
-                transition="opacity 0.3s"
-                _groupHover={{ opacity: 0.5 }}
-                zIndex={0}
-            />
-
-            {/* Card Principal de Vidro */}
+        <Box position="relative" className={`tech-card-wrap${favorite ? ' is-favorite' : ''}`}>
             <Flex
-                position="relative"
-                zIndex={1}
+                className="tech-card"
                 direction="column"
                 w="100%"
                 h="100%"
                 aspectRatio="1"
-                bg="rgba(255, 255, 255, 0.03)"
-                backdropFilter="blur(10px)"
-                borderRadius="2xl"
+                bg="#0b1115"
+                borderRadius="0"
                 border="1px solid"
-                borderColor={favorite ? "rgba(236, 177, 68, 0.6)" : "rgba(255, 255, 255, 0.05)"}
-                boxShadow="0 8px 32px rgba(0, 0, 0, 0.1)"
+                borderColor={favorite ? "rgba(77, 228, 255, 0.48)" : "rgba(187, 223, 230, 0.12)"}
+                boxShadow="none"
                 alignItems="center"
                 justifyContent="center"
-                transition="all 0.3s"
+                transition="border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease"
                 cursor="default"
                 role="group"
                 _hover={{
                     transform: "translateY(-3px)",
-                    bg: "rgba(255, 255, 255, 0.06)",
-                    borderColor: favorite ? "rgba(236, 177, 68, 1)" : "rgba(255, 255, 255, 0.2)",
-                    boxShadow: favorite ? "0 10px 40px rgba(236, 177, 68, 0.3)" : "0 10px 40px rgba(90, 3, 252, 0.2)",
+                    bg: "#0f181d",
+                    borderColor: "rgba(77, 228, 255, 0.7)",
+                    boxShadow: "none",
                 }}
             >
                 <VStack spacing={{ base: 2, md: 3 }}>
@@ -56,7 +40,7 @@ const TechCard = ({ icon, name, color, favorite }) => {
                     <Text
                         fontWeight="bold"
                         fontSize={{ base: "xs", sm: "sm", md: "md" }}
-                        color="#e1d8ed"
+                        color="#dce8eb"
                     >
                         {name}
                     </Text>
@@ -98,8 +82,10 @@ export default function TechPage() {
                 mx="auto"
                 py={{ base: 5, md: 8 }}
             >
-                {techs.map((tech) => (
-                    <TechCard key={tech.name} {...tech} />
+                {techs.map((tech, index) => (
+                    <Box key={tech.name} className="tech-card-slot" data-index={String(index + 1).padStart(2, '0')}>
+                        <TechCard {...tech} />
+                    </Box>
                 ))}
             </Flex>
         </Box>

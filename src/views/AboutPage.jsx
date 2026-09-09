@@ -29,29 +29,17 @@ export default function AboutPage() {
                     w="100%"
                     gap={{ base: 8, md: 16 }}
                 >
-                    <Box flexShrink={0} position="relative" mt={{ base: 2, md: 0 }}>
-                        <Box
-                            position="absolute"
-                            top={{ base: "-10px", md: "-15px" }}
-                            left={{ base: "-10px", md: "-15px" }}
-                            right={{ base: "-10px", md: "-15px" }}
-                            bottom={{ base: "-10px", md: "-15px" }}
-                            style={{ background: 'linear-gradient(to right, #5a03fc, #3f03ad)' }}
-                            borderRadius="full"
-                            filter={{ base: "blur(15px)", md: "blur(25px)" }}
-                            opacity={{ base: 0.3, md: 0.2 }}
-                            zIndex={0}
-                        />
+                    <Box className="about-portrait" flexShrink={0} position="relative" mt={{ base: 2, md: 0 }}>
                         <Image
                             src={photoUrl}
                             alt="Foto de Raoni Moraes"
-                            boxSize={{ base: "150px", sm: "180px", md: "350px" }}
+                            boxSize={{ base: "160px", sm: "190px", md: "320px" }}
                             objectFit="cover"
-                            borderRadius="full"
+                            borderRadius="0"
                             position="relative"
                             zIndex={1}
-                            border={{ base: "4px solid rgba(255, 255, 255, 0.1)", md: "6px solid rgba(255, 255, 255, 0.1)" }}
-                            boxShadow="2xl"
+                            border="1px solid rgba(77, 228, 255, 0.35)"
+                            boxShadow="12px 12px 0 rgba(77, 228, 255, 0.08)"
                         />
                     </Box>
 
@@ -60,23 +48,23 @@ export default function AboutPage() {
                         alignItems={{ base: "center", md: "flex-start" }}
                         textAlign={{ base: "center", md: "left" }}
                         maxW={{ base: "100%", md: "600px" }}
-                        bg="rgba(255, 255, 255, 0.03)"
-                        backdropFilter="blur(10px)"
-                        border="1px solid rgba(255, 255, 255, 0.05)"
-                        borderRadius={{ base: "3xl", md: "2xl" }}
+                        className="about-copy"
+                        bg="#0b1115"
+                        border="1px solid rgba(187, 223, 230, 0.12)"
+                        borderRadius="0"
                         p={{ base: 6, sm: 8, md: 10 }}
-                        boxShadow="0 8px 32px rgba(0, 0, 0, 0.1)"
+                        boxShadow="none"
                     >
-                        <Text fontSize={{ base: "sm", md: "xl" }} fontWeight="medium" color="#e1d8ed">
-                            {t('about.hello')}<span style={{ background: 'linear-gradient(to right, #d6bcfa, #90cdf4)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: 'bold', fontSize: '1.2em' }}>Raoni Moraes</span><span dangerouslySetInnerHTML={{ __html: t('about.role') }}></span>
+                        <Text fontSize={{ base: "sm", md: "xl" }} fontWeight="medium" color="#dce8eb">
+                            {t('about.hello')}<span style={{ color: '#4de4ff', fontWeight: 'bold', fontSize: '1.2em' }}>Raoni Moraes</span><span dangerouslySetInnerHTML={{ __html: t('about.role') }}></span>
                         </Text>
                         <Text fontSize={{ base: "xs", md: "lg" }} lineHeight="1.8" color="gray.400">
-                            {t('about.p1_1')}<Text as="span" color="#e1d8ed" fontWeight="bold">.NET (C#)</Text>{t('about.p1_2')}<Text as="span" color="#e1d8ed" fontWeight="bold">React</Text>{t('about.p1_3')}
+                            {t('about.p1_1')}<Text as="span" color="#dce8eb" fontWeight="bold">.NET (C#)</Text>{t('about.p1_2')}<Text as="span" color="#dce8eb" fontWeight="bold">React</Text>{t('about.p1_3')}
                         </Text>
                         <Text fontSize={{ base: "xs", md: "lg" }} lineHeight="1.8" color="gray.400">
                             {t('about.p2')}
                         </Text>
-                        <Text color="#d6bcfa" fontSize={{ base: "xs", md: "md" }} fontStyle="italic" mt={2}>
+                        <Text color="#75ddef" fontSize={{ base: "xs", md: "md" }} mt={2}>
                             {t('about.p3')}
                         </Text>
                     </VStack>

@@ -12,26 +12,13 @@ export default function OrcamentoPage() {
                 </Heading>
 
                 <Box position="relative" mt={{ base: 4, md: 0 }}>
-                    <Box
-                        position="absolute"
-                        top={{ base: "-10px", md: "-15px" }}
-                        left={{ base: "-10px", md: "-15px" }}
-                        right={{ base: "-10px", md: "-15px" }}
-                        bottom={{ base: "-10px", md: "-15px" }}
-                        style={{ background: 'linear-gradient(to right, #5a03fc, #3f03ad)' }}
-                        borderRadius="3xl"
-                        filter={{ base: "blur(20px)", md: "blur(30px)" }}
-                        opacity={{ base: 0.3, md: 0.2 }}
-                        zIndex={0}
-                    />
-
-                    <Flex position="relative" zIndex={1} direction="column" align="center" bg="rgba(255, 255, 255, 0.03)" backdropFilter="blur(10px)" border="1px solid rgba(255, 255, 255, 0.05)" borderRadius="3xl" p={{ base: 6, md: 12 }} boxShadow="0 8px 32px rgba(0, 0, 0, 0.1)" textAlign="center">
-                        <Text fontSize={{ base: "sm", md: "xl" }} color="#e1d8ed" mb={6} lineHeight="1.8">
-                            <span dangerouslySetInnerHTML={{ __html: t('orcamento.subtitle1') }}></span> <Text as="span" style={{ background: 'linear-gradient(to right, #d6bcfa, #90cdf4)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: 'bold' }}> contato.raonimoraes@gmail.com </Text>{t('orcamento.subtitle2')}
+                    <Flex className="budget-card" position="relative" direction="column" align="flex-start" bg="#0b1115" border="1px solid rgba(187, 223, 230, 0.14)" borderRadius="0" p={{ base: 6, md: 12 }} boxShadow="none" textAlign="left">
+                        <Text fontSize={{ base: "sm", md: "xl" }} color="#dce8eb" mb={6} lineHeight="1.8">
+                            <span dangerouslySetInnerHTML={{ __html: t('orcamento.subtitle1') }}></span> <Text as="span" color="#4de4ff" fontWeight="bold"> contato.raonimoraes@gmail.com </Text>{t('orcamento.subtitle2')}
                         </Text>
 
-                        <Box bg="rgba(0,0,0,0.3)" p={{ base: 3, md: 4 }} borderRadius="xl" border="1px solid rgba(255,255,255,0.1)" mb={8}>
-                            <Text fontWeight="bold" color="#90cdf4" letterSpacing="wide" fontSize={{ base: "xs", md: "md" }}>{t('orcamento.subject')}</Text>
+                        <Box bg="#071014" p={{ base: 3, md: 4 }} borderRadius="0" border="1px solid rgba(77,228,255,0.24)" mb={8}>
+                            <Text fontWeight="bold" color="#75ddef" letterSpacing="wide" fontSize={{ base: "xs", md: "md" }}>{t('orcamento.subject')}</Text>
                         </Box>
 
                         <Text fontSize={{ base: "xs", md: "md" }} color="gray.400" mb={8} maxW="600px" lineHeight="1.8">
@@ -43,12 +30,12 @@ export default function OrcamentoPage() {
                             href="mailto:contato.raonimoraes@gmail.com?subject=Solicitação de orçamento - Desenvolvimento"
                             leftIcon={<FaEnvelope />}
                             size={{ base: "md", md: "lg" }}
-                            color="white"
+                            color="#031115"
                             variant="solid"
-                            bg="linear-gradient(to right, #5a03fc, #3f03ad)"
-                            _hover={{ bg: "linear-gradient(to right, #6a1dfa, #4e11bd)", transform: "scale(1.05)" }}
-                            transition="all 0.3s"
-                            rounded="full"
+                            bg="#4de4ff"
+                            _hover={{ bg: "#8ceeff", transform: "translateY(-2px)" }}
+                            transition="background-color 0.2s ease, transform 0.2s ease"
+                            rounded="sm"
                             px={{ base: 8, md: 10 }}
                             py={{ base: 6, md: 7 }}
                             fontSize={{ base: "md", md: "lg" }}
